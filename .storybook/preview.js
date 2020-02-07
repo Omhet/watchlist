@@ -1,6 +1,6 @@
 import React from 'react';
 import { addDecorator } from '@storybook/react';
-import '../src/index.scss';
+import '../src/style/index.scss';
 
 const storyStyle = {
   display: 'flex',
