@@ -48,6 +48,10 @@ module.exports = {
         test: /\.(js|ts)x?$/,
         use: ['babel-loader'],
         include: path.resolve(__dirname, 'src')
+      },
+      {
+        test: /\.svg$/,
+        use: ['svg-react-loader']
       }
     ]
   }
