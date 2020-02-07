@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react";
-import "./style.css";
+import React, { PureComponent } from 'react';
+import './style.scss';
 
 class App extends PureComponent {
   render() {

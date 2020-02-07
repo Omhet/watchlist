@@ -1,20 +1,20 @@
-const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: './src/index.tsx',
   output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "dist")
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist')
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    extensions: ['.ts', '.tsx', '.js']
   },
   stats: {
     children: false,
     builtAt: false,
-    assetsSort: "!size",
+    assetsSort: '!size',
     entrypoints: false,
     hash: false,
     modules: false,
@@ -24,19 +24,19 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      template: './src/index.html'
     })
   ],
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        test: /\.s?css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(js|ts)x?$/,
-        use: ["babel-loader"],
-        include: path.resolve(__dirname, "src")
+        use: ['babel-loader'],
+        include: path.resolve(__dirname, 'src')
       }
     ]
   }
