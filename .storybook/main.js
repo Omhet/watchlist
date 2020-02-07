@@ -1,20 +1,15 @@
+const path = require('path');
+
+// your app's webpack config
+const custom = require('../webpack.common.js');
+
 module.exports = {
   stories: ['../src/**/*.stories.tsx'],
   webpackFinal: async config => {
-    config.module.rules.push(
-      {
-        test: /\.(ts|tsx)$/,
-        loader: require.resolve('babel-loader'),
-        options: {
-          presets: ['@babel/preset-react']
-        }
-      },
-      {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
-      }
-    );
-    config.resolve.extensions.push('.ts', '.tsx');
-    return config;
+    const rules = [...config.module.rules, ...custom.module.rules];
+
+    config.resolve.extensions = custom.resolve.extensions;
+
+    return { ...config, module: { ...config.module, rules } };
   }
 };
