@@ -8,9 +8,9 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Search for movies"
-        className={styles.searchbar}
+        className={styles.search}
       />
-      <SearchIcon width={24} />
+      <SearchIcon width={24} height={24} />
     </form>
   );
 };
