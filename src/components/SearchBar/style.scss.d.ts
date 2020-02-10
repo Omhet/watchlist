@@ -1,5 +1,6 @@
 declare namespace StyleScssModule {
   export interface IStyleScss {
+    main: string;
     searchbar: string;
   }
 }
