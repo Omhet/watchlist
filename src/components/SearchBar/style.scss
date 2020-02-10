@@ -1,13 +1,20 @@
 .main {
     background-color: $auxBack;
-}
-
-.searchbar {
-    color: $mainColorS;
-    background-color: $auxBack;
-    width: 546px;
-    height: 32px;
-    border: 1px solid black;
     border-radius: 4px;
     padding: 6px 16px;
+    width: 546px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    color: $auxColorS;
+    flex: 1;
+    border: none;
+    outline: 0;
+}
+
+.search::placeholder {
+    color: $auxColorT;
 }
