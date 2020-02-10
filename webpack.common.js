@@ -33,7 +33,16 @@ module.exports = {
         test: /\.scss$/,
         use: [
           'style-loader',
-          'css-loader',
+          '@teamsupercell/typings-for-css-modules-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                mode: 'local',
+                localIdentName: '[folder]__[local]--[hash:base64:5]'
+              }
+            }
+          },
           {
             loader: 'sass-loader',
             options: {
