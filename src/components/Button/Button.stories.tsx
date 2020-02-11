@@ -6,7 +6,5 @@ export default {
 };
 
 export const Basic = () => (
-  <Button onClick={() => console.log('click')}>
-    <div style={{ color: 'white' }}>Click</div>
-  </Button>
+  <Button onClick={() => console.log('click')}>Click</Button>
 );
