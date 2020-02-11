@@ -11,8 +11,10 @@ const Dropdown: FunctionComponent<Props> = ({ header }) => {
   return (
     <div className={styles.main}>
       <Button>
-        {header}
-        <DownArrowIcon style={{ marginLeft: 8 }} width={16} height={16} />
+        <>
+          {header}
+          <DownArrowIcon className={styles.arrow} />
+        </>
       </Button>
     </div>
   );
