@@ -12,3 +12,10 @@ export const Basic = () => (
     <Button>Option 2</Button>
   </Dropdown>
 );
+
+export const OpenByDefault = () => (
+  <Dropdown isOpenByDefault header="Click to open">
+    <Button>Option 1</Button>
+    <Button>Option 2</Button>
+  </Dropdown>
+);
