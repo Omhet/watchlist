@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Ad Astra",
+    "rate": 6,
+    "poster": "https://image.tmdb.org/t/p/w342/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg",
+    "isInWatchlist": false
+  },
+  {
+    "title": "Parasite",
+    "rate": 8.6,
+    "poster": "https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+    "isInWatchlist": false
+  },
+  {
+    "title": "Ip Man 4: The Finale",
+    "rate": 6,
+    "poster": "https://image.tmdb.org/t/p/w342/yJdeWaVXa2se9agI6B4mQunVYkB.jpg",
+    "isInWatchlist": false
+  },
+  {
+    "title": "Frozen II",
+    "rate": 7,
+    "poster": "https://image.tmdb.org/t/p/w342/pjeMs3yqRmFL3giJy4PMXWZTTPa.jpg",
+    "isInWatchlist": false
+  },
+  {
+    "title": "Birds of Prey (and the Fantabulous Emancipation of One Harley Quinn)",
+    "rate": 7,
+    "poster": "https://image.tmdb.org/t/p/w342/nx0IFupVrlrgKncaza2aUascED6.jpg",
+    "isInWatchlist": false
+  },
+  {
+    "title": "Sonic the Hedgehog",
+    "rate": 7.5,
+    "poster": "https://image.tmdb.org/t/p/w342/s8qRIwA0zDPbnRekeU0rDwWE7q7.jpg",
+    "isInWatchlist": false
+  },
+  {
+    "title": "Knives Out",
+    "rate": 7.8,
+    "poster": "https://image.tmdb.org/t/p/w342/pThyQovXQrw2m0s9x82twj48Jq4.jpg",
+    "isInWatchlist": false
+  },
+  {
+    "title": "Dolittle",
+    "rate": 6.5,
+    "poster": "https://image.tmdb.org/t/p/w342/hrraiBBuhu5E50otrtrykNqnOt5.jpg",
+    "isInWatchlist": false
+  },
+  {
+    "title": "Joker",
+    "rate": 8.3,
+    "poster": "https://image.tmdb.org/t/p/w342/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+    "isInWatchlist": false
+  },
+  {
+    "title": "Jojo Rabbit",
+    "rate": 8.1,
+    "poster": "https://image.tmdb.org/t/p/w342/7GsM4mtM0worCtIVeiQt28HieeN.jpg",
+    "isInWatchlist": false
+  }
+]
