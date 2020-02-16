@@ -6,19 +6,16 @@ import PlusIcon from '../../icons/Plus.svg';
 import TickIcon from '../../icons/Tick.svg';
 import SavedIcon from '../../icons/TickRibbon.svg';
 import Button from '../Button/Button';
+import { Movie } from '../../types/movie';
 
-interface Props {
-  poster: string;
-  title: string;
-  rate: string;
-  isInWatchlist: boolean;
-  onCardClick?(): void;
-  onAddToWatchlist?(): void;
+interface Props extends Movie {
+  onMovieClick?(): void;
+  onAddToWatchlistClick?(): void;
 }
 
 const MoviePreview: FunctionComponent<Props> = ({
-  onCardClick,
-  onAddToWatchlist,
+  onMovieClick,
+  onAddToWatchlistClick,
   poster,
   title,
   rate,
@@ -36,7 +33,7 @@ const MoviePreview: FunctionComponent<Props> = ({
   );
   return (
     <div>
-      <div onClick={onCardClick} className={styles.preview}>
+      <div onClick={onMovieClick} className={styles.preview}>
         {CardIcon}
         <img className={styles.poster} src={poster} alt={title} />
         <div className={styles.info}>
@@ -47,7 +44,7 @@ const MoviePreview: FunctionComponent<Props> = ({
           <h3>{title}</h3>
         </div>
       </div>
-      <Button onClick={onAddToWatchlist}>
+      <Button onClick={onAddToWatchlistClick}>
         <div className={styles.addToWatchlistButton}>
           {ButtonIcon}
           Watchlist
