@@ -1,6 +1,6 @@
 import React from 'react';
-import Dropdown from './Dropdown';
-import Button from '../Button/Button';
+import Dropdown from '../components/Dropdown/Dropdown';
+import Button from '../components/Button/Button';
 
 export default {
   title: 'Dropdown'
