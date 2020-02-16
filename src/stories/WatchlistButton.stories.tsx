@@ -1,5 +1,5 @@
 import React from 'react';
-import WatchlistButton from './WatchlistButton';
+import WatchlistButton from '../components/WatchlistButton/WatchlistButton';
 
 export default {
   title: 'WatchlistButton'

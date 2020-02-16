@@ -1,5 +1,5 @@
 import React from 'react';
-import MoviePreview from './MoviePreview';
+import MoviePreview from '../components/MoviePreview/MoviePreview';
 
 export default {
   title: 'MoviePreview'
