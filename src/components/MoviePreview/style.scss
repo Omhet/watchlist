@@ -1,5 +1,6 @@
 .preview {
     position: relative;
+    overflow: hidden;
     width: 178px;
     height: 268px;
 }
@@ -11,10 +12,10 @@
     cursor: pointer;
 }
 
-.saveIcon {
+.cardIcon {
     position: absolute;
-    top: -2px;
-    right: 0;
+    top: -1px;
+    right: -1px;
     width: 32px;
 }
 
@@ -67,4 +68,8 @@
     & svg {
         margin-right: 8px;
     }
+}
+
+.addToWatchlistButton:hover {
+    background-color: $mainBackT;
 }

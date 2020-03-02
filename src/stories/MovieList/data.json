@@ -15,7 +15,7 @@
     "title": "Ip Man 4: The Finale",
     "rate": 6,
     "poster": "https://image.tmdb.org/t/p/w342/yJdeWaVXa2se9agI6B4mQunVYkB.jpg",
-    "isInWatchlist": false
+    "isInWatchlist": true
   },
   {
     "title": "Frozen II",
@@ -39,7 +39,7 @@
     "title": "Knives Out",
     "rate": 7.8,
     "poster": "https://image.tmdb.org/t/p/w342/pThyQovXQrw2m0s9x82twj48Jq4.jpg",
-    "isInWatchlist": false
+    "isInWatchlist": true
   },
   {
     "title": "Dolittle",
@@ -57,6 +57,6 @@
     "title": "Jojo Rabbit",
     "rate": 8.1,
     "poster": "https://image.tmdb.org/t/p/w342/7GsM4mtM0worCtIVeiQt28HieeN.jpg",
-    "isInWatchlist": false
+    "isInWatchlist": true
   }
 ]

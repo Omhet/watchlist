@@ -1,0 +1,15 @@
+.main {
+   cursor: pointer;
+}
+
+.save:hover {
+    & path:first-child {
+        fill: lighten($color: $overlay, $amount: 5%)
+    }
+}
+
+.saved:hover {
+    & path:first-child {
+        fill: darken($color: $mainAccent, $amount: 5%)
+    }
+}
