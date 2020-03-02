@@ -41,7 +41,9 @@ const MoviePreview: FunctionComponent<Props> = ({
             <StarIcon className={styles.starIcon} />
             {rate}
           </span>
-          <h3>{title}</h3>
+          <h3 title={title} className={styles.title}>
+            {title}
+          </h3>
         </div>
       </div>
       <Button onClick={onAddToWatchlistClick}>
