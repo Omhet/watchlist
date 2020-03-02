@@ -8,11 +8,12 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
+    cursor: pointer;
 }
 
 .saveIcon {
     position: absolute;
-    top: 0;
+    top: -2px;
     right: 0;
     width: 32px;
 }
@@ -38,6 +39,17 @@
 .starIcon {
     width: 18px;
     margin-right: 4px;
+}
+
+.title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.title:hover {
+    color: $mainAccent;
 }
 
 .addToWatchlistButton {

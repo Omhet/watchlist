@@ -7,6 +7,7 @@ declare namespace StyleScssModule {
     rate: string;
     saveIcon: string;
     starIcon: string;
+    title: string;
   }
 }
 
