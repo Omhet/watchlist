@@ -1,4 +1,9 @@
 {
+  "author": {
+    "name": "Vladimir Ivanov"
+  },
+  "license": "UNLICENSED",
+  "private": true,
   "scripts": {
     "start": "webpack-dev-server  --config webpack.common.js --mode development --hot",
     "build": "webpack --config webpack.common.js  --mode production",
