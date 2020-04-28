@@ -1,11 +1,11 @@
 import React from 'react';
 import './style.scss';
-import SearchBar from '../SearchBar/SearchBar';
+import PageHeader from '../PageHeader/PageHeader';
 
 const App = () => {
   return (
     <div>
-      <SearchBar />
+      <PageHeader />
     </div>
   );
 };
