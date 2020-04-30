@@ -13,7 +13,9 @@ const WatchlistButton: FunctionComponent<Props> = ({ count }) => {
       <div className={styles.main}>
         <PlusSquareIcon width={16} height={16} />
         <span className={styles.text}>Watchlist</span>
-        {count && <div className={styles.counter}>{count}</div>}
+        {count !== undefined && count > 0 && (
+          <div className={styles.counter}>{count}</div>
+        )}
       </div>
     </Button>
   );

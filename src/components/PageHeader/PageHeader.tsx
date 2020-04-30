@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './style.scss';
 import SearchBar from '../SearchBar/SearchBar';
 import Logo from '../Logo/Logo';
-import WatchlistButton from '../WatchlistButton/WatchlistButton';
+import WatchlistButton from '../../containers/WatchlistButton';
 
 const PageHeader = () => {
   return (
