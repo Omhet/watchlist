@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { RootState, Dispatch } from '../redux/types';
 import MovieList from '../components/MovieList/MovieList';
-import { moviesFsa } from '../redux/modules/movies';
+import { toggleMovieInWatchlist } from '../redux/modules/movies';
 import { Movie } from '../types/movie';
 
 const mapState = (state: RootState) => {
@@ -11,8 +11,8 @@ const mapState = (state: RootState) => {
 };
 
 const mapDispatch = (dispatch: Dispatch) => ({
-  onAddToWatchlistClick: (movie: Movie) => {
-    dispatch(moviesFsa.addMovieToWatchlist(movie));
+  onWatchlistClick: (movie: Movie) => {
+    dispatch(toggleMovieInWatchlist(movie));
   }
 });
 

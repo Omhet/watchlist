@@ -58,7 +58,7 @@
     color: $mainAccent;
 }
 
-.addToWatchlistButton {
+.watchlistButton {
     width: 178px;
     height: 40px;
     display: flex;
@@ -75,6 +75,6 @@
     }
 }
 
-.addToWatchlistButton:hover {
+.watchlistButton:hover {
     background-color: $mainBackT;
 }

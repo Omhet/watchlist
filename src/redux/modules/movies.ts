@@ -8,7 +8,8 @@ import { ThunkAction } from '../types';
 export const fsa = {
   setMoviesToShow: createAction('MOVIES/SET_MOVIES_TO_SHOW')<MovieRecord>(),
   setMoviesTitle: createAction('MOVIES/SET_MOVIES_TITLE')<string>(),
-  addMovieToWatchlist: createAction('MOVIES/ADD_TO_LIST')<Movie>()
+  addMovieToWatchlist: createAction('MOVIES/ADD_TO_LIST')<Movie>(),
+  removeMovieFromWatchlist: createAction('MOVIES/REMOVE_FROM_LIST')<string>()
 };
 export const moviesFsa = fsa;
 
@@ -46,10 +47,38 @@ export const movies = withState(initialState)
       watchlist,
       toShow
     };
+  })
+  .add(fsa.removeMovieFromWatchlist, (state, { payload: id }) => {
+    const toShow = { ...state.toShow };
+    const watchlist = { ...state.watchlist };
+
+    delete watchlist[id];
+    toShow[id].isInWatchlist = false;
+
+    return {
+      ...state,
+      watchlist,
+      toShow
+    };
   });
 
 export const showFeaturedMovies = (): ThunkAction => async dispatch => {
   const response = await fetchFeaturedMovies();
   const movies = mapMoviesResponseToMovieRecord(response);
   dispatch(fsa.setMoviesToShow(movies));
+};
+
+export const toggleMovieInWatchlist = (movie: Movie): ThunkAction => (
+  dispatch,
+  getState
+) => {
+  const {
+    movies: { watchlist }
+  } = getState();
+  const { id } = movie;
+  if (watchlist[id] === undefined) {
+    dispatch(fsa.addMovieToWatchlist(movie));
+  } else {
+    dispatch(fsa.removeMovieFromWatchlist(id));
+  }
 };

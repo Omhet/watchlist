@@ -6,19 +6,19 @@ import MoviePreview from '../MoviePreview/MoviePreview';
 interface Props {
   movies: MovieRecord;
   onMovieClick?(): void;
-  onAddToWatchlistClick(movie: Movie): void;
+  onWatchlistClick(movie: Movie): void;
 }
 
 const MovieList: FunctionComponent<Props> = ({
   movies,
-  onAddToWatchlistClick,
+  onWatchlistClick,
   onMovieClick
 }) => {
   return (
     <div className={styles.main}>
       {Object.values(movies).map(movie => (
         <MoviePreview
-          onAddToWatchlistClick={onAddToWatchlistClick}
+          onWatchlistClick={onWatchlistClick}
           onMovieClick={onMovieClick}
           key={movie.id}
           movie={movie}

@@ -1,6 +1,5 @@
 declare namespace StyleScssModule {
   export interface IStyleScss {
-    addToWatchlistButton: string;
     cardIcon: string;
     info: string;
     poster: string;
@@ -8,6 +7,7 @@ declare namespace StyleScssModule {
     rate: string;
     starIcon: string;
     title: string;
+    watchlistButton: string;
   }
 }
 
