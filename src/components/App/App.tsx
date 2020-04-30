@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import styles from './style.scss';
 import PageHeader from '../PageHeader/PageHeader';
-import Title from '../Title/Title';
 import MovieList from '../../containers/MovieList';
+import MoviesTitle from '../../containers/MoviesTitle';
 
 interface Props {
   onMount(): void;
@@ -17,7 +17,7 @@ const App: FunctionComponent<Props> = ({ onMount }) => {
     <div className={styles.main}>
       <PageHeader />
       <div className={styles.moviesBlock}>
-        <Title className={styles.title} text="Featured movies" />
+        <MoviesTitle className={styles.title} />
         <MovieList />
       </div>
     </div>

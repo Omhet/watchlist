@@ -7,6 +7,7 @@ import { Dispatch } from 'redux';
 const mapDispatch = (dispatch: Dispatch) => ({
   onMount: () => {
     dispatch(moviesFsa.setMoviesToShow(movies));
+    dispatch(moviesFsa.setMoviesTitle('Featured movies'));
   }
 });
 
