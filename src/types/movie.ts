@@ -6,4 +6,11 @@ export interface Movie {
   isInWatchlist: boolean;
 }
 
-export type Watchlist = Record<string, Movie>;
+export interface MovieResponse {
+  id: string;
+  poster_path: string;
+  title: string;
+  vote_average: string;
+}
+
+export type MovieRecord = Record<string, Movie>;

@@ -1,25 +1,25 @@
 import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
-import { Movie, Watchlist } from '../../types/movie';
-import { mapMoviesResponseToMovies } from '../../utils/movies';
+import { Movie, MovieRecord } from '../../types/movie';
+import { mapMoviesResponseToMovieRecord } from '../../utils/movies';
 import { fetchFeaturedMovies } from '../../utils/request';
 import { ThunkAction } from '../types';
 
 export const fsa = {
-  setMoviesToShow: createAction('MOVIES/SET_MOVIES_TO_SHOW')<Movie[]>(),
+  setMoviesToShow: createAction('MOVIES/SET_MOVIES_TO_SHOW')<MovieRecord>(),
   setMoviesTitle: createAction('MOVIES/SET_MOVIES_TITLE')<string>(),
   addMovieToWatchlist: createAction('MOVIES/ADD_TO_LIST')<Movie>()
 };
 export const moviesFsa = fsa;
 
 interface State {
-  toShow: Movie[];
-  watchlist: Watchlist;
+  toShow: MovieRecord;
+  watchlist: MovieRecord;
   title: string;
 }
 
 const initialState: State = {
-  toShow: [],
+  toShow: {},
   watchlist: {},
   title: ''
 };
@@ -33,16 +33,23 @@ export const movies = withState(initialState)
     ...state,
     title: payload
   }))
-  .add(fsa.addMovieToWatchlist, (state, { payload }) => ({
-    ...state,
-    watchlist: {
-      ...state.watchlist,
-      [payload.id]: payload
-    }
-  }));
+  .add(fsa.addMovieToWatchlist, (state, { payload }) => {
+    const { id } = payload;
+    const toShow = { ...state.toShow };
+    const watchlist = { ...state.watchlist };
+
+    watchlist[id] = payload;
+    toShow[id].isInWatchlist = true;
+
+    return {
+      ...state,
+      watchlist,
+      toShow
+    };
+  });
 
 export const showFeaturedMovies = (): ThunkAction => async dispatch => {
   const response = await fetchFeaturedMovies();
-  const movies = mapMoviesResponseToMovies(response);
+  const movies = mapMoviesResponseToMovieRecord(response);
   dispatch(fsa.setMoviesToShow(movies));
 };

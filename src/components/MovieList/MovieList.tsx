@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import styles from './style.scss';
-import { Movie } from '../../types/movie';
+import { Movie, MovieRecord } from '../../types/movie';
 import MoviePreview from '../MoviePreview/MoviePreview';
 
 interface Props {
-  movies: Movie[];
+  movies: MovieRecord;
   onMovieClick?(): void;
   onAddToWatchlistClick(movie: Movie): void;
 }
@@ -16,7 +16,7 @@ const MovieList: FunctionComponent<Props> = ({
 }) => {
   return (
     <div className={styles.main}>
-      {movies.map(movie => (
+      {Object.values(movies).map(movie => (
         <MoviePreview
           onAddToWatchlistClick={onAddToWatchlistClick}
           onMovieClick={onMovieClick}
