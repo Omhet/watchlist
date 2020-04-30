@@ -7,19 +7,23 @@ import Button from '../Button/Button';
 import { Movie } from '../../types/movie';
 import MovieRibbonIcon from '../MovieRibbonIcon/MovieRibbonIcon';
 
-interface Props extends Movie {
+interface Props {
+  movie: Movie;
   onMovieClick?(): void;
-  onAddToWatchlistClick?(): void;
+  onAddToWatchlistClick(movie: Movie): void;
 }
 
 const MoviePreview: FunctionComponent<Props> = ({
+  movie,
   onMovieClick,
-  onAddToWatchlistClick,
-  poster,
-  title,
-  rate,
-  isInWatchlist
+  onAddToWatchlistClick
 }) => {
+  const { poster, title, rate, isInWatchlist } = movie;
+
+  const handleAddToWatchlistClick = () => {
+    onAddToWatchlistClick(movie);
+  };
+
   const ButtonIcon = isInWatchlist ? (
     <TickIcon width={20} />
   ) : (
@@ -42,7 +46,7 @@ const MoviePreview: FunctionComponent<Props> = ({
           </h3>
         </div>
       </div>
-      <Button onClick={onAddToWatchlistClick}>
+      <Button onClick={handleAddToWatchlistClick}>
         <div className={styles.addToWatchlistButton}>
           {ButtonIcon}
           Watchlist

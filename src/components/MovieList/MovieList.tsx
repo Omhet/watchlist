@@ -6,7 +6,7 @@ import MoviePreview from '../MoviePreview/MoviePreview';
 interface Props {
   movies: Movie[];
   onMovieClick?(): void;
-  onAddToWatchlistClick?(): void;
+  onAddToWatchlistClick(movie: Movie): void;
 }
 
 const MovieList: FunctionComponent<Props> = ({
@@ -20,8 +20,8 @@ const MovieList: FunctionComponent<Props> = ({
         <MoviePreview
           onAddToWatchlistClick={onAddToWatchlistClick}
           onMovieClick={onMovieClick}
-          key={movie.title}
-          {...movie}
+          key={movie.id}
+          movie={movie}
         />
       ))}
     </div>
