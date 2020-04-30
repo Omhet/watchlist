@@ -4,6 +4,7 @@ import configureStore from '../redux';
 import App from '../containers/App';
 
 const store = configureStore();
+window.store = store;
 
 export default class Root extends Component {
   render() {
