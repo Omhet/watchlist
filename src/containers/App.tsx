@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import App from '../components/App/App';
 import { moviesFsa, showFeaturedMovies } from '../redux/modules/movies';
-import { Dispatch } from 'redux';
+import { Dispatch } from '../redux/types';
 
 const mapDispatch = (dispatch: Dispatch) => ({
   onMount: () => {
