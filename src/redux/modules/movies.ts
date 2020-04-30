@@ -1,6 +1,9 @@
 import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
 import { Movie } from '../../types/movie';
+import { ThunkAction } from 'redux-thunk';
+import { mapMoviesResponseToMovies } from '../../utils/movies';
+import { fetchFeaturedMovies } from '../../utils/request';
 
 export const fsa = {
   setMoviesToShow: createAction('MOVIES/SET_MOVIES_TO_SHOW')<Movie[]>(),
@@ -27,3 +30,9 @@ export const movies = withState(initialState)
     ...state,
     title: payload
   }));
+
+export const showFeaturedMovies: ThunkAction = () => async dispatch => {
+  const response = await fetchFeaturedMovies();
+  const movies = mapMoviesResponseToMovies(response);
+  dispatch(fsa.setMoviesToShow(movies));
+};
