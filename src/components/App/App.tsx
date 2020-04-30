@@ -1,10 +1,10 @@
 import React from 'react';
-import './style.scss';
+import styles from './style.scss';
 import PageHeader from '../PageHeader/PageHeader';
 
 const App = () => {
   return (
-    <div>
+    <div className={styles.main}>
       <PageHeader />
     </div>
   );
