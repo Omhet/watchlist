@@ -6,7 +6,8 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/watchlist/'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
