@@ -1,8 +1,6 @@
 declare namespace StyleScssModule {
   export interface IStyleScss {
     main: string;
-    moviesBlock: string;
-    title: string;
   }
 }
 
