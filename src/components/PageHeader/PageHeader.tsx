@@ -8,11 +8,13 @@ const PageHeader = () => {
   return (
     <div className={styles.main}>
       <Logo />
-      <SearchBar
-        onSearch={value => {
-          console.log(value);
-        }}
-      />
+      <div className={styles.search}>
+        <SearchBar
+          onSearch={value => {
+            console.log(value);
+          }}
+        />
+      </div>
       <WatchlistButton />
     </div>
   );
