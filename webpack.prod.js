@@ -5,11 +5,11 @@ const common = require('./webpack.common.js');
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    publicPath: '/watchlist/'
+    publicPath: '/'
   },
   plugins: [
     new webpack.DefinePlugin({
-      BASENAME: JSON.stringify('/watchlist/')
+      BASENAME: JSON.stringify('/')
     })
   ]
 });
