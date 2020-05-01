@@ -3,11 +3,12 @@ import styles from './style.scss';
 import SearchBar from '../SearchBar/SearchBar';
 import Logo from '../Logo/Logo';
 import WatchlistButton from '../../containers/WatchlistButton';
+import { isSmallScreen } from '../../utils/device';
 
 const PageHeader = () => {
   return (
     <div className={styles.main}>
-      <Logo />
+      {!isSmallScreen() && <Logo />}
       <div className={styles.search}>
         <SearchBar
           onSearch={value => {
