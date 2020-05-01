@@ -5,3 +5,11 @@ export const fetchFeaturedMovies = async () => {
   const data = await res.json();
   return data.results;
 };
+
+export const fetchSearchMovies = async (query: string) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=16a9a816f5f270bded4ebfa953a7ee0f&language=en-US&query=${query}&page=1&include_adult=false`
+  );
+  const data = await res.json();
+  return data.results;
+};

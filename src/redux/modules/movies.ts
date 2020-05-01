@@ -2,7 +2,7 @@ import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
 import { Movie, MovieRecord } from '../../types/movie';
 import { getMoviesFromResponse } from '../selectors/movies';
-import { fetchFeaturedMovies } from '../../utils/request';
+import { fetchFeaturedMovies, fetchSearchMovies } from '../../utils/request';
 import { ThunkAction } from '../types';
 
 export const fsa = {
@@ -73,6 +73,16 @@ export const showFeaturedMovies = (): ThunkAction => async (
 ) => {
   const state = getState();
   const response = await fetchFeaturedMovies();
+  const movies = getMoviesFromResponse(state, response);
+  dispatch(fsa.setMoviesToShow(movies));
+};
+
+export const showSearchMovies = (query: string): ThunkAction => async (
+  dispatch,
+  getState
+) => {
+  const state = getState();
+  const response = await fetchSearchMovies(query);
   const movies = getMoviesFromResponse(state, response);
   dispatch(fsa.setMoviesToShow(movies));
 };
