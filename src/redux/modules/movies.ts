@@ -1,12 +1,13 @@
 import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
 import { Movie, MovieRecord } from '../../types/movie';
-import { mapMoviesResponseToMovieRecord } from '../../utils/movies';
+import { getMoviesFromResponse } from '../selectors/movies';
 import { fetchFeaturedMovies } from '../../utils/request';
 import { ThunkAction } from '../types';
 
 export const fsa = {
   setMoviesToShow: createAction('MOVIES/SET_MOVIES_TO_SHOW')<MovieRecord>(),
+  setWatchlist: createAction('MOVIES/SET_WATCHLIST')<MovieRecord>(),
   setMoviesTitle: createAction('MOVIES/SET_MOVIES_TITLE')<string>(),
   addMovieToWatchlist: createAction('MOVIES/ADD_TO_LIST')<Movie>(),
   removeMovieFromWatchlist: createAction('MOVIES/REMOVE_FROM_LIST')<string>()
@@ -33,6 +34,10 @@ export const movies = withState(initialState)
   .add(fsa.setMoviesTitle, (state, { payload }) => ({
     ...state,
     title: payload
+  }))
+  .add(fsa.setWatchlist, (state, { payload }) => ({
+    ...state,
+    watchlist: payload
   }))
   .add(fsa.addMovieToWatchlist, (state, { payload }) => {
     const { id } = payload;
@@ -62,9 +67,13 @@ export const movies = withState(initialState)
     };
   });
 
-export const showFeaturedMovies = (): ThunkAction => async dispatch => {
+export const showFeaturedMovies = (): ThunkAction => async (
+  dispatch,
+  getState
+) => {
+  const state = getState();
   const response = await fetchFeaturedMovies();
-  const movies = mapMoviesResponseToMovieRecord(response);
+  const movies = getMoviesFromResponse(state, response);
   dispatch(fsa.setMoviesToShow(movies));
 };
 
