@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './style.scss';
 import SearchBar from '../SearchBar/SearchBar';
 import Logo from '../Logo/Logo';
-import WatchlistButton from '../../containers/WatchlistButton';
+import WatchlistCounter from '../../containers/WatchlistCounter';
 import { isSmallScreen } from '../../utils/device';
 
 const PageHeader = () => {
@@ -16,7 +17,9 @@ const PageHeader = () => {
           }}
         />
       </div>
-      <WatchlistButton />
+      <Link to="/list">
+        <WatchlistCounter />
+      </Link>
     </div>
   );
 };

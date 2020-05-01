@@ -77,6 +77,13 @@ export const showFeaturedMovies = (): ThunkAction => async (
   dispatch(fsa.setMoviesToShow(movies));
 };
 
+export const showWatchlistMovies = (): ThunkAction => (dispatch, getState) => {
+  const {
+    movies: { watchlist }
+  } = getState();
+  dispatch(fsa.setMoviesToShow(watchlist));
+};
+
 export const toggleMovieInWatchlist = (movie: Movie): ThunkAction => (
   dispatch,
   getState

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { RootState } from '../redux/types';
-import WatchlistButton from '../components/WatchlistButton/WatchlistButton';
+import WatchlistCounter from '../components/WatchlistCounter/WatchlistCounter';
 
 const mapState = (state: RootState) => {
   return {
@@ -8,4 +8,4 @@ const mapState = (state: RootState) => {
   };
 };
 
-export default connect(mapState)(WatchlistButton);
+export default connect(mapState)(WatchlistCounter);

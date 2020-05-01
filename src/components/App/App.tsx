@@ -1,8 +1,9 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import styles from './style.scss';
 import PageHeader from '../PageHeader/PageHeader';
-import MovieList from '../../containers/MovieList';
-import MoviesTitle from '../../containers/MoviesTitle';
+import FeaturedMovies from '../../containers/FeaturedMovies';
+import { Switch, Route } from 'react-router-dom';
+import WatchlistMovies from '../../containers/WatchlistMovies';
 
 interface Props {
   onMount(): void;
@@ -17,8 +18,14 @@ const App: FunctionComponent<Props> = ({ onMount }) => {
     <div className={styles.main}>
       <PageHeader />
       <div className={styles.moviesBlock}>
-        <MoviesTitle className={styles.title} />
-        <MovieList />
+        <Switch>
+          <Route exact path="/list">
+            <WatchlistMovies />
+          </Route>
+          <Route exact path="/">
+            <FeaturedMovies />
+          </Route>
+        </Switch>
       </div>
     </div>
   );
