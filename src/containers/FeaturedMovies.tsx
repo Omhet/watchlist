@@ -6,7 +6,10 @@ import MoviesBlock from '../components/MoviesBlock/MoviesBlock';
 const mapDispatch = (dispatch: Dispatch) => ({
   onMount: () => {
     dispatch(moviesFsa.setMoviesTitle('Featured movies'));
-    dispatch(showFeaturedMovies());
+    dispatch(showFeaturedMovies({ page: 1 }));
+  },
+  onReachMovieListEnd: (page: number) => {
+    dispatch(showFeaturedMovies({ page }));
   }
 });
 

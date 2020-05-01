@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import styles from './style.scss';
 import { Movie, MovieRecord } from '../../types/movie';
 import MoviePreview from '../MoviePreview/MoviePreview';
@@ -7,22 +8,36 @@ interface Props {
   movies: MovieRecord;
   onMovieClick?(): void;
   onWatchlistClick(movie: Movie): void;
+  onReachListEnd?(page: number): void;
 }
 
 const MovieList: FunctionComponent<Props> = ({
   movies,
   onWatchlistClick,
-  onMovieClick
+  onMovieClick,
+  onReachListEnd
 }) => {
+  const [ref, inView] = useInView({ triggerOnce: true });
+
+  const [page, setPage] = useState(1);
+  useEffect(() => {
+    if (inView) {
+      const nextPage = page + 1;
+      setPage(nextPage);
+      onReachListEnd && onReachListEnd(nextPage);
+    }
+  }, [inView]);
+
   return (
     <div className={styles.main}>
       {Object.values(movies).map(movie => (
-        <MoviePreview
-          onWatchlistClick={onWatchlistClick}
-          onMovieClick={onMovieClick}
-          key={movie.id}
-          movie={movie}
-        />
+        <div ref={ref} key={movie.id}>
+          <MoviePreview
+            onWatchlistClick={onWatchlistClick}
+            onMovieClick={onMovieClick}
+            movie={movie}
+          />
+        </div>
       ))}
     </div>
   );

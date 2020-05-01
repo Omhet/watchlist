@@ -5,9 +5,13 @@ import MovieList from '../../containers/MovieList';
 
 interface Props {
   onMount(): void;
+  onReachMovieListEnd(page: number): void;
 }
 
-const MoviesBlock: FunctionComponent<Props> = ({ onMount }) => {
+const MoviesBlock: FunctionComponent<Props> = ({
+  onMount,
+  onReachMovieListEnd
+}) => {
   useEffect(() => {
     onMount();
   }, []);
@@ -15,7 +19,7 @@ const MoviesBlock: FunctionComponent<Props> = ({ onMount }) => {
   return (
     <div className={styles.main}>
       <MoviesTitle className={styles.title} />
-      <MovieList />
+      <MovieList onReachListEnd={onReachMovieListEnd} />
     </div>
   );
 };

@@ -6,6 +6,11 @@ export interface Movie {
   isInWatchlist: boolean;
 }
 
+export interface MovieRequest {
+  page: number;
+  query?: string;
+}
+
 export interface MovieResponse {
   id: string;
   poster_path: string;

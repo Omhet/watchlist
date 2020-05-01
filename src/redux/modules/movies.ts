@@ -1,12 +1,13 @@
 import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
-import { Movie, MovieRecord } from '../../types/movie';
+import { Movie, MovieRecord, MovieRequest } from '../../types/movie';
 import { getMoviesFromResponse } from '../selectors/movies';
 import { fetchFeaturedMovies, fetchSearchMovies } from '../../utils/request';
 import { ThunkAction } from '../types';
 
 export const fsa = {
   setMoviesToShow: createAction('MOVIES/SET_MOVIES_TO_SHOW')<MovieRecord>(),
+  addMoviesToShow: createAction('MOVIES/ADD_MOVIES_TO_SHOW')<MovieRecord>(),
   setWatchlist: createAction('MOVIES/SET_WATCHLIST')<MovieRecord>(),
   setMoviesTitle: createAction('MOVIES/SET_MOVIES_TITLE')<string>(),
   addMovieToWatchlist: createAction('MOVIES/ADD_TO_LIST')<Movie>(),
@@ -30,6 +31,13 @@ export const movies = withState(initialState)
   .add(fsa.setMoviesToShow, (state, { payload }) => ({
     ...state,
     toShow: payload
+  }))
+  .add(fsa.addMoviesToShow, (state, { payload }) => ({
+    ...state,
+    toShow: {
+      ...state.toShow,
+      ...payload
+    }
   }))
   .add(fsa.setMoviesTitle, (state, { payload }) => ({
     ...state,
@@ -67,22 +75,25 @@ export const movies = withState(initialState)
     };
   });
 
-export const showFeaturedMovies = (): ThunkAction => async (
-  dispatch,
-  getState
-) => {
+export const showFeaturedMovies = (
+  request: MovieRequest
+): ThunkAction => async (dispatch, getState) => {
   const state = getState();
-  const response = await fetchFeaturedMovies();
+  const response = await fetchFeaturedMovies(request);
   const movies = getMoviesFromResponse(state, response);
-  dispatch(fsa.setMoviesToShow(movies));
+  if (request.page > 1) {
+    dispatch(fsa.addMoviesToShow(movies));
+  } else {
+    dispatch(fsa.setMoviesToShow(movies));
+  }
 };
 
-export const showSearchMovies = (query: string): ThunkAction => async (
+export const showSearchMovies = (request: MovieRequest): ThunkAction => async (
   dispatch,
   getState
 ) => {
   const state = getState();
-  const response = await fetchSearchMovies(query);
+  const response = await fetchSearchMovies(request);
   const movies = getMoviesFromResponse(state, response);
   dispatch(fsa.setMoviesToShow(movies));
 };
