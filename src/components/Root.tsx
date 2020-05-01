@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from '../redux';
-import App from '../containers/App';
-import { saveWatchlist } from '../utils/storage';
+import { saveWatchlist, loadWatchlist } from '../utils/storage';
+import App from './App/App';
 
-const store = configureStore();
+const watchlist = loadWatchlist();
+
+const store = configureStore({ movies: { watchlist, toShow: {}, title: '' } });
 window.store = store;
 
 export default class Root extends Component {
