@@ -21,7 +21,7 @@ export default class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router basename={BASENAME}>
+        <Router>
           <App />
         </Router>
       </Provider>
