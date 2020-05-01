@@ -1,0 +1,22 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    margin-left: 8px;
+    color: $mainColor;
+    font-weight: bold;
+}
+
+.counter {
+    margin-left: 8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $mainAccent;
+    color: $auxColor;
+    font-size: 14px;
+    font-weight: bold;
+}
