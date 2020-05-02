@@ -26,12 +26,12 @@ const MovieList: FunctionComponent<Props> = ({
       setPage(nextPage);
       onReachListEnd && onReachListEnd(nextPage);
     }
-  }, [inView]);
+  }, [inView, onReachListEnd]);
 
   return (
     <div className={styles.main}>
       {movies.map(movie => (
-        <div ref={ref} key={movie.id}>
+        <div ref={onReachListEnd ? ref : null} key={movie.id}>
           <MoviePreview
             onWatchlistClick={onWatchlistClick}
             onMovieClick={onMovieClick}
