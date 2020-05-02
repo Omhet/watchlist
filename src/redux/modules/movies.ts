@@ -41,7 +41,8 @@ export const movies = withState(initialState)
   }))
   .add(fsa.addMovieToWatchlist, (state, { payload }) => {
     const { id } = payload;
-    const watchlist = [...state.watchlist, payload];
+
+    const watchlist = [...state.watchlist, { ...payload, isInWatchlist: true }];
 
     const toShow = state.toShow.map(m => {
       if (m.id === id) {
