@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import styles from './style.scss';
-import PlusSquareIcon from '../../icons/PlusSquare.svg';
+import ListIcon from '../../icons/List.svg';
 
 interface Props {
   count?: number;
@@ -9,7 +9,7 @@ interface Props {
 const WatchlistCounter: FunctionComponent<Props> = ({ count }) => {
   return (
     <div className={styles.main}>
-      <PlusSquareIcon width={16} height={16} />
+      <ListIcon width={24} height={24} />
       <span className={styles.text}>Watchlist</span>
       {count !== undefined && count > 0 && (
         <div className={styles.counter}>{count}</div>
