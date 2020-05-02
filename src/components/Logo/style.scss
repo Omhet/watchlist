@@ -1,11 +1,12 @@
 .main {
-    width: 144px;
-    height: 32px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: $mainAccent;
-    border-radius: 8px;
-    color: $auxColor;
+    align-items: flex-end;
+    color: $mainColor;
     font-weight: bold;
+}
+
+.text {
+    font-size: 18px;
+    margin-right: 8px;
 }
