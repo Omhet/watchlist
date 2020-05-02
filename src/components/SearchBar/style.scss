@@ -6,6 +6,10 @@
     height: 32px;
     display: flex;
     align-items: center;
+
+    & .searchButton {
+        width: 24px;
+    }
 }
 
 .search {
