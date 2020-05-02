@@ -9,7 +9,7 @@ export const isMovieInWatchlist = (state: RootState, id: string) => {
 
 export const getMoviesFromResponse = (
   state: RootState,
-  response: Array<MovieResponse>
+  response: MovieResponse
 ): Movies => {
   return response.map(({ poster_path, vote_average, title, id }) => ({
     id,

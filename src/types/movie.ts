@@ -11,11 +11,13 @@ export interface MovieRequest {
   query?: string;
 }
 
-export interface MovieResponse {
+export interface MovieResponseItem {
   id: string;
   poster_path: string;
   title: string;
   vote_average: number;
 }
+
+export type MovieResponse = Array<MovieResponseItem>;
 
 export type Movies = Array<Movie>;
