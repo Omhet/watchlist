@@ -15,5 +15,5 @@ export const saveWatchlist = (watchlist: Movies) => {
 
 export const loadWatchlist = () => {
   const watchlist = load('watchlist') as Movies | undefined;
-  return watchlist === undefined || !Array.isArray(watchlist) ? [] : watchlist;
+  return watchlist ?? [];
 };
