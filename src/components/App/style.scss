@@ -4,6 +4,9 @@
     margin: 0 auto;
     flex-direction: column;
     align-items: center;
+    @media (max-width: $mobile) {
+        padding: 0 8px;
+    }
 }
 
 .moviesBlock {

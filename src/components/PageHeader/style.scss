@@ -13,11 +13,23 @@
         position: absolute;
     }
 
+    $margin: 52px;
     & > :first-child {
-        margin-right: 52px;
+        margin-right: $margin;
     }
     & > :last-child {
-        margin-left: 52px;
+        margin-left: $margin;
+    }
+
+    @media (max-width: $mobile) {
+        
+        $margin: 16px;
+        & > :first-child {
+            margin-right: $margin;
+        }
+        & > :last-child {
+            margin-left: $margin;
+        }
     }
 }
 
