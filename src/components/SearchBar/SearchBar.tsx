@@ -28,7 +28,7 @@ const SearchBar: FunctionComponent<Props> = ({ onSearch }) => {
         placeholder="Search for movies"
         className={styles.search}
       />
-      <Button onClick={handleSearch}>
+      <Button className={styles.searchButton} onClick={handleSearch}>
         <SearchIcon width={24} height={24} />
       </Button>
     </form>

@@ -1,7 +1,11 @@
+.main {
+    width: 100%;
+}
+
 .preview {
     position: relative;
     overflow: hidden;
-    width: 178px;
+    width: 100%;
     height: 268px;
 }
 
@@ -59,7 +63,7 @@
 }
 
 .watchlistButton {
-    width: 178px;
+    width: 100%;
     height: 40px;
     display: flex;
     align-items: center;

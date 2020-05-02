@@ -30,7 +30,7 @@ const MoviePreview: FunctionComponent<Props> = ({
     <PlusIcon width={12} />
   );
   return (
-    <div>
+    <div className={styles.main}>
       <div onClick={onMovieClick} className={styles.preview}>
         <div className={styles.cardIcon}>
           <MovieRibbonIcon isInWatchlist={isInWatchlist} />

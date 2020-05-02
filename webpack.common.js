@@ -48,6 +48,7 @@ module.exports = {
             options: {
               prependData: `
                 @import "src/style/_colors.scss";
+                @import "src/style/_sizes.scss";
               `
             }
           }

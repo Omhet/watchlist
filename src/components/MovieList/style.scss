@@ -4,4 +4,17 @@
     gap: 24px 32px;
     width: 100%;
     justify-items: center;
+
+    & > * {
+        width: 178px;
+    }
+
+    @media (max-width: $mobile) {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+
+        & > * {
+            width: 168px;
+        }
+    }
 }
