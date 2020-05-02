@@ -30,7 +30,7 @@ const MovieList: FunctionComponent<Props> = ({
 
   return (
     <div className={styles.main}>
-      {Object.values(movies).map(movie => (
+      {movies.map(movie => (
         <div ref={ref} key={movie.id}>
           <MoviePreview
             onWatchlistClick={onWatchlistClick}

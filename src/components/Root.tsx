@@ -7,7 +7,7 @@ import App from './App/App';
 
 const watchlist = loadWatchlist();
 
-const store = configureStore({ movies: { watchlist, toShow: {}, title: '' } });
+const store = configureStore({ movies: { watchlist, toShow: [], title: '' } });
 window.store = store;
 
 export default class Root extends Component {

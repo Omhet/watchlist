@@ -15,7 +15,7 @@ export interface MovieResponse {
   id: string;
   poster_path: string;
   title: string;
-  vote_average: string;
+  vote_average: number;
 }
 
-export type Movies = Record<string, Movie>;
+export type Movies = Array<Movie>;

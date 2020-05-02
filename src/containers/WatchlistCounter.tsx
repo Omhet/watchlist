@@ -4,7 +4,7 @@ import WatchlistCounter from '../components/WatchlistCounter/WatchlistCounter';
 
 const mapState = (state: RootState) => {
   return {
-    count: Object.keys(state.movies.watchlist).length
+    count: state.movies.watchlist.length
   };
 };
 
