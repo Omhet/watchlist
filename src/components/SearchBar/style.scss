@@ -10,6 +10,10 @@
     & .searchButton {
         width: 24px;
     }
+
+    @media (max-width: $mobile) {
+        padding: 6px 8px;
+    }
 }
 
 .search {
@@ -17,6 +21,7 @@
     flex: 1;
     border: none;
     outline: 0;
+    width: inherit;
 }
 
 .search::placeholder {
