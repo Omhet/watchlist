@@ -1,14 +1,14 @@
 import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
-import { Movie, MovieRecord, MovieRequest } from '../../types/movie';
+import { Movie, Movies, MovieRequest } from '../../types/movie';
 import { getMoviesFromResponse } from '../selectors/movies';
 import { fetchFeaturedMovies, fetchSearchMovies } from '../../utils/request';
 import { ThunkAction } from '../types';
 
 export const fsa = {
-  setMoviesToShow: createAction('MOVIES/SET_MOVIES_TO_SHOW')<MovieRecord>(),
-  addMoviesToShow: createAction('MOVIES/ADD_MOVIES_TO_SHOW')<MovieRecord>(),
-  setWatchlist: createAction('MOVIES/SET_WATCHLIST')<MovieRecord>(),
+  setMoviesToShow: createAction('MOVIES/SET_MOVIES_TO_SHOW')<Movies>(),
+  addMoviesToShow: createAction('MOVIES/ADD_MOVIES_TO_SHOW')<Movies>(),
+  setWatchlist: createAction('MOVIES/SET_WATCHLIST')<Movies>(),
   setMoviesTitle: createAction('MOVIES/SET_MOVIES_TITLE')<string>(),
   addMovieToWatchlist: createAction('MOVIES/ADD_TO_LIST')<Movie>(),
   removeMovieFromWatchlist: createAction('MOVIES/REMOVE_FROM_LIST')<string>()
@@ -16,8 +16,8 @@ export const fsa = {
 export const moviesFsa = fsa;
 
 interface State {
-  toShow: MovieRecord;
-  watchlist: MovieRecord;
+  toShow: Movies;
+  watchlist: Movies;
   title: string;
 }
 

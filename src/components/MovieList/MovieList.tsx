@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import styles from './style.scss';
-import { Movie, MovieRecord } from '../../types/movie';
+import { Movie, Movies } from '../../types/movie';
 import MoviePreview from '../MoviePreview/MoviePreview';
 
 interface Props {
-  movies: MovieRecord;
+  movies: Movies;
   onMovieClick?(): void;
   onWatchlistClick(movie: Movie): void;
   onReachListEnd?(page: number): void;

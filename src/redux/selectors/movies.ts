@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { MovieRecord, MovieResponse } from '../../types/movie';
+import { Movies, MovieResponse } from '../../types/movie';
 import { RootState } from '../types';
 
 export const isMovieInWatchlist = (state: RootState, id: string) => {
@@ -10,7 +10,7 @@ export const isMovieInWatchlist = (state: RootState, id: string) => {
 export const getMoviesFromResponse = (
   state: RootState,
   response: Array<MovieResponse>
-): MovieRecord => {
+): Movies => {
   const movies = {};
   for (const { poster_path, vote_average, title, id } of response) {
     movies[id] = {

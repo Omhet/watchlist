@@ -18,4 +18,4 @@ export interface MovieResponse {
   vote_average: string;
 }
 
-export type MovieRecord = Record<string, Movie>;
+export type Movies = Record<string, Movie>;
