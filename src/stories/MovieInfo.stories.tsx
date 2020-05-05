@@ -11,6 +11,9 @@ const props = {
   poster: 'https://image.tmdb.org/t/p/w342/7GsM4mtM0worCtIVeiQt28HieeN.jpg',
   rate: 8.2,
   isInWatchlist: false,
+  year: '2019',
+  genres: 'Comedy, War, Drama',
+  runtime: '1h 48m',
   backdropPoster:
     'https://image.tmdb.org/t/p/w1280/xqx5XqTeN3krSM5JFYGsxX81CRk.jpg'
 };

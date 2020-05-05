@@ -1,10 +1,16 @@
 declare namespace StyleScssModule {
   export interface IStyleScss {
+    additionalInfo: string;
     backdrop: string;
     backdropPoster: string;
+    info: string;
+    infoBlock: string;
     main: string;
     overlay: string;
+    playIcon: string;
     preview: string;
+    title: string;
+    trailerLink: string;
   }
 }
 

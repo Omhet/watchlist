@@ -28,6 +28,50 @@
     background: linear-gradient(to bottom, $overlayS, $mainBack);
 }
 
+.infoBlock {
+    display: flex;
+    align-items: center;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 32px;
+}
+
 .preview {
     width: 256px;
+}
+
+.title {
+    font-size: 36px;
+}
+
+.trailerLink {
+    margin-top: 32px;
+    display: flex;
+}
+
+.playIcon {
+    margin-right: 16px;
+}
+
+.additionalInfo {
+    margin-top: 8px;
+
+    & > * + * {
+        position: relative;
+        margin-left: 20px;
+        &::before {
+            content: "\A";
+            width: 4px;
+            height: 4px;
+            position: absolute;
+            border-radius: 50%;
+            left: -12px;
+            top: 50%;
+            background: $mainColor;
+            display: inline-block;
+        }
+    }
 }
