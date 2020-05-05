@@ -46,6 +46,7 @@ const MovieInfo: FunctionComponent<Props> = ({
             <span>Watch Trailer</span>
           </a>
         </div>
+        <div className={styles.rate}>{rate}</div>
       </div>
       <div className={styles.backdrop}>
         <img className={styles.backdropPoster} src={backdropPoster} />

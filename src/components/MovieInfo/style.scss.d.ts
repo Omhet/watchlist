@@ -9,6 +9,7 @@ declare namespace StyleScssModule {
     overlay: string;
     playIcon: string;
     preview: string;
+    rate: string;
     title: string;
     trailerLink: string;
   }
