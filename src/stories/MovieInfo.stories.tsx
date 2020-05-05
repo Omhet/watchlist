@@ -18,7 +18,11 @@ const props = {
   plot:
     'A World War II satire that follows a lonely German boy whose world view is turned upside down when he discovers his single mother is hiding a young Jewish girl in their attic. Aided only by his idiotic imaginary friend, Adolf Hitler, Jojo must confront his blind nationalism.',
   backdropPoster:
-    'https://image.tmdb.org/t/p/w1280/xqx5XqTeN3krSM5JFYGsxX81CRk.jpg'
+    'https://image.tmdb.org/t/p/w1280/xqx5XqTeN3krSM5JFYGsxX81CRk.jpg',
+  creators: [
+    { name: 'Taika Waititi', job: 'Director' },
+    { name: 'Christine Leunens', job: 'Novel' }
+  ]
 };
 export const Basic = () => (
   <div style={{ width: 1024 }}>

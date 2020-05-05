@@ -3,12 +3,14 @@ declare namespace StyleScssModule {
     additionalInfo: string;
     backdrop: string;
     backdropPoster: string;
+    creators: string;
     info: string;
     infoBlock: string;
     main: string;
     overlay: string;
     overview: string;
     playIcon: string;
+    plot: string;
     preview: string;
     rate: string;
     tagline: string;

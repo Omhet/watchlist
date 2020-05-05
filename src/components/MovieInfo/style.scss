@@ -102,3 +102,27 @@
 .tagline {
     color: $mainColorS;
 }
+
+.plot {
+    margin-bottom: 32px;
+}
+
+.creators {
+    display: flex;
+
+    & > * {
+        display: flex;
+        flex-direction: column;
+
+        & > :first-child {
+            font-weight: bold;
+        }
+        & > :last-child {
+            color: $mainColorS;
+        }
+    }
+
+    & > * + * {
+        margin-left: 128px;
+    }
+}

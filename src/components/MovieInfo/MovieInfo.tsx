@@ -11,6 +11,7 @@ interface Props extends Movie {
   runtime: string;
   tagline: string;
   plot: string;
+  creators: Array<{ name: string; job: string }>;
   onToggleWatchlistClick(movie: Movie): void;
 }
 
@@ -24,6 +25,7 @@ const MovieInfo: FunctionComponent<Props> = ({
   year,
   title,
   rate,
+  creators,
   isInWatchlist,
   id,
   onToggleWatchlistClick
@@ -59,6 +61,14 @@ const MovieInfo: FunctionComponent<Props> = ({
           <div>
             <div className={styles.tagline}>{tagline}</div>
             <p className={styles.plot}>{plot}</p>
+            <div className={styles.creators}>
+              {creators.map(({ name, job }) => (
+                <div key={name}>
+                  <span>{name}</span>
+                  <span>{job}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
