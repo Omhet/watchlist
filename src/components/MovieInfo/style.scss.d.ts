@@ -11,6 +11,7 @@ declare namespace StyleScssModule {
     playIcon: string;
     preview: string;
     rate: string;
+    tagline: string;
     title: string;
     trailerLink: string;
     upperInfo: string;

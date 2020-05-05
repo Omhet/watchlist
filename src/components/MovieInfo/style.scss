@@ -41,6 +41,7 @@
 
 .upperInfo {
     display: flex;
+    margin-bottom: 48px;
 }
 
 .info {
@@ -96,4 +97,8 @@
     border-radius: 50%;
     border: 8px solid rgba($mainAccent, 0.9);
     margin-left: 64px;
+}
+
+.tagline {
+    color: $mainColorS;
 }
