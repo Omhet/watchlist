@@ -7,11 +7,13 @@ declare namespace StyleScssModule {
     infoBlock: string;
     main: string;
     overlay: string;
+    overview: string;
     playIcon: string;
     preview: string;
     rate: string;
     title: string;
     trailerLink: string;
+    upperInfo: string;
   }
 }
 

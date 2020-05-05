@@ -9,6 +9,8 @@ interface Props extends Movie {
   year: string;
   genres: string;
   runtime: string;
+  tagline: string;
+  plot: string;
   onToggleWatchlistClick(movie: Movie): void;
 }
 
@@ -16,7 +18,9 @@ const MovieInfo: FunctionComponent<Props> = ({
   backdropPoster,
   poster,
   genres,
+  tagline,
   runtime,
+  plot,
   year,
   title,
   rate,
@@ -27,26 +31,36 @@ const MovieInfo: FunctionComponent<Props> = ({
   const movie = { poster, title, rate, isInWatchlist, id };
   return (
     <div className={styles.main}>
-      <div className={styles.infoBlock}>
+      <div className={styles.overview}>
         <div className={styles.preview}>
           <MoviePreview
             onWatchlistClick={onToggleWatchlistClick}
             movie={movie}
           />
         </div>
-        <div className={styles.info}>
-          <h1 className={styles.title}>{title}</h1>
-          <div className={styles.additionalInfo}>
-            <span>{year}</span>
-            <span>{genres}</span>
-            <span>{runtime}</span>
+
+        <div className={styles.infoBlock}>
+          <div className={styles.upperInfo}>
+            <div className={styles.info}>
+              <h1 className={styles.title}>{title}</h1>
+              <div className={styles.additionalInfo}>
+                <span>{year}</span>
+                <span>{genres}</span>
+                <span>{runtime}</span>
+              </div>
+              <a className={styles.trailerLink}>
+                <PlayIcon width={16} height={16} className={styles.playIcon} />
+                <span>Watch Trailer</span>
+              </a>
+            </div>
+            <div className={styles.rate}>{rate}</div>
           </div>
-          <a className={styles.trailerLink}>
-            <PlayIcon width={16} height={16} className={styles.playIcon} />
-            <span>Watch Trailer</span>
-          </a>
+
+          <div>
+            <div className={styles.tagline}>{tagline}</div>
+            <p className={styles.plot}>{plot}</p>
+          </div>
         </div>
-        <div className={styles.rate}>{rate}</div>
       </div>
       <div className={styles.backdrop}>
         <img className={styles.backdropPoster} src={backdropPoster} />

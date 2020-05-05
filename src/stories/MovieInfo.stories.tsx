@@ -14,6 +14,9 @@ const props = {
   year: '2019',
   genres: 'Comedy, War, Drama',
   runtime: '1h 48m',
+  tagline: 'An anti-hate satire.',
+  plot:
+    'A World War II satire that follows a lonely German boy whose world view is turned upside down when he discovers his single mother is hiding a young Jewish girl in their attic. Aided only by his idiotic imaginary friend, Adolf Hitler, Jojo must confront his blind nationalism.',
   backdropPoster:
     'https://image.tmdb.org/t/p/w1280/xqx5XqTeN3krSM5JFYGsxX81CRk.jpg'
 };

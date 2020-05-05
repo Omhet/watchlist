@@ -28,15 +28,24 @@
     background: linear-gradient(to bottom, $overlayS, $mainBack);
 }
 
-.infoBlock {
+.overview {
     display: flex;
     align-items: center;
+}
+
+.infoBlock {
+    margin-left: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.upperInfo {
+    display: flex;
 }
 
 .info {
     display: flex;
     flex-direction: column;
-    margin-left: 32px;
 }
 
 .preview {
