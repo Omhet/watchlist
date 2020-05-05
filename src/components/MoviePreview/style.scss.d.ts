@@ -2,6 +2,7 @@ declare namespace StyleScssModule {
   export interface IStyleScss {
     cardIcon: string;
     info: string;
+    m: string;
     main: string;
     poster: string;
     preview: string;

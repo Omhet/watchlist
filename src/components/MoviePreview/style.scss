@@ -7,6 +7,9 @@
     overflow: hidden;
     width: 100%;
     height: 268px;
+    &.m {
+        height: 384px;
+    }
 }
 
 .poster {
@@ -63,8 +66,8 @@
 }
 
 .watchlistButton {
+    padding: .9em 0;
     width: 100%;
-    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,6 +76,10 @@
     font-weight: bold;
     border-radius: 0 0 4px 4px;
     font-size: 14px;
+
+    &.m {
+        font-size: 18px;
+    }
 
     & svg {
         margin-right: 8px;

@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import classnames from 'classnames';
 import styles from './style.scss';
 import StarIcon from '../../icons/Star.svg';
 import PlusIcon from '../../icons/Plus.svg';
@@ -10,6 +11,7 @@ import MovieRibbonIcon from '../MovieRibbonIcon/MovieRibbonIcon';
 interface Props {
   movie: Movie;
   showInfo?: boolean;
+  size?: 's' | 'm';
   onMovieClick?(): void;
   onWatchlistClick(movie: Movie): void;
 }
@@ -17,6 +19,7 @@ interface Props {
 const MoviePreview: FunctionComponent<Props> = ({
   movie,
   showInfo = true,
+  size = 's',
   onMovieClick,
   onWatchlistClick
 }) => {
@@ -27,13 +30,16 @@ const MoviePreview: FunctionComponent<Props> = ({
   };
 
   const ButtonIcon = isInWatchlist ? (
-    <TickIcon width={20} />
+    <TickIcon width={'1.4em'} />
   ) : (
-    <PlusIcon width={12} />
+    <PlusIcon width={'0.9em'} />
   );
   return (
     <div className={styles.main}>
-      <div onClick={onMovieClick} className={styles.preview}>
+      <div
+        onClick={onMovieClick}
+        className={classnames(styles.preview, { [styles.m]: size === 'm' })}
+      >
         <div className={styles.cardIcon}>
           <MovieRibbonIcon isInWatchlist={isInWatchlist} />
         </div>
@@ -51,7 +57,11 @@ const MoviePreview: FunctionComponent<Props> = ({
         )}
       </div>
       <Button onClick={handleWatchlistClick}>
-        <div className={styles.watchlistButton}>
+        <div
+          className={classnames(styles.watchlistButton, {
+            [styles.m]: size === 'm'
+          })}
+        >
           {ButtonIcon}
           Watchlist
         </div>
