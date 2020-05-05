@@ -38,6 +38,7 @@ const MovieInfo: FunctionComponent<Props> = ({
           <MoviePreview
             onWatchlistClick={onToggleWatchlistClick}
             movie={movie}
+            showInfo={false}
           />
         </div>
 
