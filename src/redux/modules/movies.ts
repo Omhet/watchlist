@@ -80,10 +80,14 @@ export const movies = withState(initialState)
       return m;
     });
 
+    const movieOverview = { ...state.movieOverview };
+    movieOverview.isInWatchlist = true;
+
     return {
       ...state,
       watchlist,
-      toShow
+      toShow,
+      movieOverview
     };
   })
   .add(fsa.removeMovieFromWatchlist, (state, { payload: id }) => {
@@ -100,10 +104,14 @@ export const movies = withState(initialState)
       return m;
     });
 
+    const movieOverview = { ...state.movieOverview };
+    movieOverview.isInWatchlist = false;
+
     return {
       ...state,
       watchlist,
-      toShow
+      toShow,
+      movieOverview
     };
   });
 
