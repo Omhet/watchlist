@@ -5,7 +5,7 @@ import MovieList from '../../containers/MovieList';
 
 interface Props {
   onMount(): void;
-  onReachMovieListEnd(page: number): void;
+  onReachMovieListEnd?(page: number): void;
 }
 
 const MoviesBlock: FunctionComponent<Props> = ({

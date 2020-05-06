@@ -1,41 +1,20 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import MovieInfo from '../components/MovieInfo/MovieInfo';
-import { fetchMovieInfo } from '../utils/request';
-import { MovieWithInfo } from '../types/movie';
-import { getMovieWithInfoFromResponse } from '../redux/selectors/movies';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setMovieToOverview } from '../redux/modules/movies';
 import { RootState } from '../redux/types';
 
 interface Props {
   id: string;
 }
 
-const SearchMovies: FunctionComponent<Props> = ({ id }) => {
-  const [movie, setMovie] = useState<MovieWithInfo>({
-    id,
-    poster: '',
-    title: '',
-    rate: '',
-    isInWatchlist: false,
-    creators: [],
-    genres: []
-  });
+const MovieOverview: FunctionComponent<Props> = ({ id }) => {
+  const dispatch = useDispatch();
   useEffect(() => {
-    (async function() {
-      try {
-        const movieResult = await fetchMovieInfo({ id });
-        const movie = useSelector((state: RootState) =>
-          getMovieWithInfoFromResponse(state, movieResult)
-        );
-        if (movie !== undefined) {
-          setMovie(movie);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    })();
+    dispatch(setMovieToOverview(id));
   }, [id]);
 
+  const movie = useSelector((state: RootState) => state.movies.movieOverview);
   return (
     <>
       <MovieInfo
@@ -46,4 +25,4 @@ const SearchMovies: FunctionComponent<Props> = ({ id }) => {
   );
 };
 
-export default SearchMovies;
+export default MovieOverview;
