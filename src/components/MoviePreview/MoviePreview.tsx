@@ -7,12 +7,12 @@ import TickIcon from '../../icons/Tick.svg';
 import Button from '../Button/Button';
 import { Movie } from '../../types/movie';
 import MovieRibbonIcon from '../MovieRibbonIcon/MovieRibbonIcon';
+import { useHistory } from 'react-router-dom';
 
 interface Props {
   movie: Movie;
   showInfo?: boolean;
   size?: 's' | 'm';
-  onMovieClick?(): void;
   onWatchlistClick(movie: Movie): void;
 }
 
@@ -20,13 +20,18 @@ const MoviePreview: FunctionComponent<Props> = ({
   movie,
   showInfo = true,
   size = 's',
-  onMovieClick,
   onWatchlistClick
 }) => {
-  const { poster, title, rate, isInWatchlist } = movie;
+  const { poster, title, rate, isInWatchlist, id } = movie;
+
+  const history = useHistory();
 
   const handleWatchlistClick = () => {
     onWatchlistClick(movie);
+  };
+
+  const handleMovieClick = () => {
+    history.push(`/movie?id=${id}`);
   };
 
   const ButtonIcon = isInWatchlist ? (
@@ -37,7 +42,7 @@ const MoviePreview: FunctionComponent<Props> = ({
   return (
     <div className={styles.main}>
       <div
-        onClick={onMovieClick}
+        onClick={handleMovieClick}
         className={classnames(styles.preview, { [styles.m]: size === 'm' })}
       >
         <div className={styles.cardIcon}>
