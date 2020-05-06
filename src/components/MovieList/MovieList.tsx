@@ -6,7 +6,6 @@ import MoviePreview from '../MoviePreview/MoviePreview';
 
 interface Props {
   movies: Movies;
-  onMovieClick?(): void;
   onWatchlistClick(movie: Movie): void;
   onReachListEnd?(page: number): void;
 }
@@ -14,7 +13,6 @@ interface Props {
 const MovieList: FunctionComponent<Props> = ({
   movies,
   onWatchlistClick,
-  onMovieClick,
   onReachListEnd
 }) => {
   const [ref, inView] = useInView({ triggerOnce: true });
@@ -32,11 +30,7 @@ const MovieList: FunctionComponent<Props> = ({
     <div className={styles.main}>
       {movies.map(movie => (
         <div ref={onReachListEnd ? ref : null} key={movie.id}>
-          <MoviePreview
-            onWatchlistClick={onWatchlistClick}
-            onMovieClick={onMovieClick}
-            movie={movie}
-          />
+          <MoviePreview onWatchlistClick={onWatchlistClick} movie={movie} />
         </div>
       ))}
     </div>
