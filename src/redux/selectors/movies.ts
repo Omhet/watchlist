@@ -6,6 +6,7 @@ import {
   MovieWithInfo
 } from '../../types/movie';
 import { RootState } from '../types';
+import { minutesToRuntimeString } from '../../utils/misc';
 
 export const isMovieInWatchlist = (state: RootState, id: string) => {
   const { watchlist } = state.movies;
@@ -53,7 +54,7 @@ export const getMovieWithInfoFromResponse = (
     plot: overview,
     genres: genres.map(({ name }) => name),
     creators: crew.slice(0, 2),
-    runtime,
+    runtime: minutesToRuntimeString(runtime),
     year: String(new Date(release_date).getFullYear())
   };
 };

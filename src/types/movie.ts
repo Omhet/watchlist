@@ -30,7 +30,7 @@ export interface MovieResponseItem {
   title: string;
   overview: string;
   tagline: string;
-  runtime: string;
+  runtime: number;
   release_date: string;
   vote_average: string;
   videos: { results: Array<{ key: string; name: string }> };
