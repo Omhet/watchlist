@@ -9,10 +9,10 @@ const props = {
   id: '1',
   title: 'Jojo Rabbit',
   poster: 'https://image.tmdb.org/t/p/w342/7GsM4mtM0worCtIVeiQt28HieeN.jpg',
-  rate: 8.2,
+  rate: '8.2',
   isInWatchlist: false,
   year: '2019',
-  genres: 'Comedy, War, Drama',
+  genres: ['Comedy', 'War', 'Drama'],
   runtime: '1h 48m',
   tagline: 'An anti-hate satire.',
   plot:
@@ -26,6 +26,9 @@ const props = {
 };
 export const Basic = () => (
   <div style={{ width: 1024 }}>
-    <MovieInfo {...props} />
+    <MovieInfo
+      onToggleWatchlistClick={movie => console.log(movie)}
+      {...props}
+    />
   </div>
 );
