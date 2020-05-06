@@ -54,6 +54,6 @@ export const getMovieWithInfoFromResponse = (
     genres: genres.map(({ name }) => name),
     creators: crew.slice(0, 2),
     runtime,
-    year: release_date
+    year: String(new Date(release_date).getFullYear())
   };
 };
