@@ -1,17 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import styles from './style.scss';
 import PlayIcon from '../../icons/Play.svg';
-import { Movie } from '../../types/movie';
+import { MovieWithInfo, Movie } from '../../types/movie';
 import MoviePreview from '../MoviePreview/MoviePreview';
 
-interface Props extends Movie {
-  backdropPoster: string;
-  year: string;
-  genres: string;
-  runtime: string;
-  tagline: string;
-  plot: string;
-  creators: Array<{ name: string; job: string }>;
+interface Props extends MovieWithInfo {
   onToggleWatchlistClick(movie: Movie): void;
 }
 
@@ -49,7 +42,7 @@ const MovieInfo: FunctionComponent<Props> = ({
               <h1 className={styles.title}>{title}</h1>
               <div className={styles.additionalInfo}>
                 <span>{year}</span>
-                <span>{genres}</span>
+                <span>{genres.join(', ')}</span>
                 <span>{runtime}</span>
               </div>
               <a className={styles.trailerLink}>

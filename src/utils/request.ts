@@ -1,4 +1,4 @@
-import { MovieRequest, MovieResponse } from '../types/movie';
+import { MovieRequest, MovieResponse, MovieResponseItem } from '../types/movie';
 
 export const fetchFeaturedMovies = async ({
   page
@@ -19,4 +19,14 @@ export const fetchSearchMovies = async ({
   );
   const data = await res.json();
   return data.results;
+};
+
+export const fetchMovieInfo = async ({
+  id
+}: MovieRequest): Promise<MovieResponseItem> => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=16a9a816f5f270bded4ebfa953a7ee0f&language=en-US`
+  );
+  const data = await res.json();
+  return data;
 };
