@@ -1,0 +1,26 @@
+.main {
+    width: 152px;
+    height: 290px;
+}
+
+.image {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+}
+
+.info {
+    padding: 16px 8px;
+    display: flex;
+    flex-direction: column;
+    background-color: $mainBackS;
+    border-radius: 0 0 4px 4px ;
+}
+
+.name {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.title {
+    color: $auxColorT;
+}
