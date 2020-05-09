@@ -1,0 +1,9 @@
+.main {
+    display: flex;
+    max-width: 100%;
+    overflow-x: scroll;
+
+    & > * + * {
+        margin-left: 32px;
+    }
+}
