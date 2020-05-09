@@ -14,6 +14,7 @@ export interface MovieWithInfo extends Movie {
   tagline?: string;
   plot?: string;
   creators: Array<{ name: string; job: string }>;
+  cast: Array<{ image: string; name: string; character: string }>;
 }
 
 export interface MovieRequest {
@@ -36,7 +37,7 @@ export interface MovieResponseItem {
   videos: { results: Array<{ key: string; name: string }> };
   credits: {
     crew: Array<{ job: string; name: string }>;
-    cast: Array<{ profile_path: string; name: string }>;
+    cast: Array<{ profile_path: string; name: string; character: string }>;
   };
 }
 

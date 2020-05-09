@@ -19,6 +19,7 @@ const store = configureStore({
       rate: '',
       isInWatchlist: false,
       creators: [],
+      cast: [],
       genres: []
     }
   }

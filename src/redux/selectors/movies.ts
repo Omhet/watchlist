@@ -39,7 +39,7 @@ export const getMovieWithInfoFromResponse = (
     vote_average,
     title,
     id,
-    credits: { crew },
+    credits: { crew, cast },
     runtime,
     release_date
   } = response;
@@ -55,6 +55,13 @@ export const getMovieWithInfoFromResponse = (
     genres: genres.map(({ name }) => name),
     creators: crew.slice(0, 2),
     runtime: minutesToRuntimeString(runtime),
-    year: String(new Date(release_date).getFullYear())
+    year: String(new Date(release_date).getFullYear()),
+    cast: cast
+      .slice(0, 10)
+      .map(({ name, profile_path, character }) => ({
+        name,
+        character,
+        image: `https://image.tmdb.org/t/p/w276_and_h350_face${profile_path}`
+      }))
   };
 };
