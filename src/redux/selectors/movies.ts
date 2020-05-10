@@ -6,7 +6,7 @@ import {
   MovieWithInfo
 } from '../../types/movie';
 import { RootState } from '../types';
-import { minutesToRuntimeString } from '../../utils/misc';
+import { minutesToRuntimeString, findMainCreators } from '../../utils/movie';
 
 export const isMovieInWatchlist = (state: RootState, id: string) => {
   const { watchlist } = state.movies;
@@ -53,7 +53,7 @@ export const getMovieWithInfoFromResponse = (
     tagline,
     plot: overview,
     genres: genres.slice(0, 3).map(({ name }) => name),
-    creators: crew.slice(0, 2),
+    creators: findMainCreators(crew),
     runtime: minutesToRuntimeString(runtime),
     year: String(new Date(release_date).getFullYear()),
     cast: cast.slice(0, 10).map(({ name, profile_path, character }) => ({
