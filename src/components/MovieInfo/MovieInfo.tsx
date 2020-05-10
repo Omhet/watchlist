@@ -39,7 +39,9 @@ const MovieInfo: FunctionComponent<Props> = ({
         <div className={styles.infoBlock}>
           <div className={styles.upperInfo}>
             <div className={styles.info}>
-              <h1 className={styles.title}>{title}</h1>
+              <h1 title={title} className={styles.title}>
+                {title}
+              </h1>
               <div className={styles.additionalInfo}>
                 <span>{year}</span>
                 <span>{genres.join(', ')}</span>

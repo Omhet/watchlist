@@ -56,6 +56,12 @@
 
 .title {
     font-size: 36px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    line-height: 1.1;
+    max-height: 3.3em;
 }
 
 .trailerLink {
@@ -106,6 +112,12 @@
 
 .plot {
     margin-bottom: 32px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    line-height: 1.2;
+    max-height: 6em;
 }
 
 .creators {
