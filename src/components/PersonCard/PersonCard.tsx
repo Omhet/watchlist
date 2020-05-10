@@ -12,8 +12,12 @@ const PersonCard: FunctionComponent<Props> = ({ image, name, title }) => {
     <div className={styles.main}>
       <img className={styles.image} src={image} alt={name} />
       <div className={styles.info}>
-        <span className={styles.name}>{name}</span>
-        <span className={styles.title}>{title}</span>
+        <span title={name} className={styles.name}>
+          {name}
+        </span>
+        <span title={title} className={styles.title}>
+          {title}
+        </span>
       </div>
     </div>
   );
