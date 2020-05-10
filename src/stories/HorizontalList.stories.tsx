@@ -24,7 +24,7 @@ const anotherItemProps = {
   image:
     'https://image.tmdb.org/t/p/w276_and_h350_face/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg',
   name: 'Roman Griffin',
-  title: 'Johannes "Jojo" Betzler'
+  title: 'Johannes "Jojo" Betzler Betzler Betzler'
 };
 
 export const Basic = () => (

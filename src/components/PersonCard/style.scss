@@ -22,12 +22,16 @@
 .name {
     font-weight: bold;
     margin-bottom: 8px;
-    overflow: hidden;
-    max-height: 38px;
 }
 
 .title {
     color: $auxColorT;
+}
+
+.name, .title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
     overflow: hidden;
     max-height: 38px;
 }
