@@ -47,6 +47,7 @@
 .info {
     display: flex;
     flex-direction: column;
+    max-width: 60%;
 }
 
 .preview {
@@ -96,7 +97,7 @@
     height: 132px;
     border-radius: 50%;
     border: 8px solid rgba($mainAccent, 0.9);
-    margin-left: 64px;
+    margin: 0 auto;
 }
 
 .tagline {
