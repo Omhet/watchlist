@@ -52,16 +52,14 @@ export const getMovieWithInfoFromResponse = (
     backdropPoster: `https://image.tmdb.org/t/p/w1280${backdrop_path}`,
     tagline,
     plot: overview,
-    genres: genres.map(({ name }) => name),
+    genres: genres.slice(0, 3).map(({ name }) => name),
     creators: crew.slice(0, 2),
     runtime: minutesToRuntimeString(runtime),
     year: String(new Date(release_date).getFullYear()),
-    cast: cast
-      .slice(0, 10)
-      .map(({ name, profile_path, character }) => ({
-        name,
-        character,
-        image: `https://image.tmdb.org/t/p/w276_and_h350_face${profile_path}`
-      }))
+    cast: cast.slice(0, 10).map(({ name, profile_path, character }) => ({
+      name,
+      character,
+      image: `https://image.tmdb.org/t/p/w276_and_h350_face${profile_path}`
+    }))
   };
 };
