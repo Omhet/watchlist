@@ -6,6 +6,9 @@ export interface Movie {
   isInWatchlist: boolean;
 }
 
+export type Cast = Array<{ image: string; name: string; character: string }>;
+export type Creators = Array<{ name: string; job: string }>;
+
 export interface MovieWithInfo extends Movie {
   backdropPoster?: string;
   year?: string;
@@ -13,8 +16,8 @@ export interface MovieWithInfo extends Movie {
   runtime?: string;
   tagline?: string;
   plot?: string;
-  creators: Array<{ name: string; job: string }>;
-  cast: Array<{ image: string; name: string; character: string }>;
+  creators: Creators;
+  cast: Cast;
 }
 
 export interface MovieRequest {

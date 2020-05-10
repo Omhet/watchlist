@@ -6,8 +6,7 @@ import {
   toggleMovieInWatchlist
 } from '../redux/modules/movies';
 import { RootState } from '../redux/types';
-import HorizontalList from '../components/HorizontalList/HorizontalList';
-import PersonCard from '../components/PersonCard/PersonCard';
+import CastList from '../components/CastList/CastList';
 
 interface Props {
   id: string;
@@ -30,11 +29,7 @@ const MovieOverview: FunctionComponent<Props> = ({ id }) => {
   return (
     <>
       <MovieInfo onToggleWatchlistClick={toggleWatchlistHandle} {...movie} />
-      <HorizontalList>
-        {movie.cast.map(person => (
-          <PersonCard key={person.image} {...person} title={person.character} />
-        ))}
-      </HorizontalList>
+      <CastList cast={movie.cast} />
     </>
   );
 };
