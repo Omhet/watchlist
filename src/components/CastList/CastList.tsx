@@ -13,8 +13,8 @@ const CastList: FunctionComponent<Props> = ({ cast }) => {
     <>
       <h2 className={styles.title}>Cast</h2>
       <HorizontalList>
-        {cast.map(person => (
-          <PersonCard key={person.image} {...person} title={person.character} />
+        {cast.map((person, i) => (
+          <PersonCard key={i} {...person} title={person.character} />
         ))}
       </HorizontalList>
     </>
