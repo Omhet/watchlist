@@ -1,4 +1,6 @@
 .main {
+    display: flex;
+    flex-direction: column;
     width: 152px;
     min-width: 152px;
 }
@@ -12,6 +14,7 @@
     padding: 16px 8px;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     background-color: $mainBackS;
     border-radius: 0 0 4px 4px ;
 }
@@ -19,8 +22,12 @@
 .name {
     font-weight: bold;
     margin-bottom: 8px;
+    overflow: hidden;
+    max-height: 38px;
 }
 
 .title {
     color: $auxColorT;
+    overflow: hidden;
+    max-height: 38px;
 }
