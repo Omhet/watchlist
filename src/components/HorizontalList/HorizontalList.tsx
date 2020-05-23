@@ -1,8 +1,13 @@
 import React, { FunctionComponent } from 'react';
+import classnames from 'classnames';
 import styles from './style.scss';
 
-const HorizontalList: FunctionComponent = ({ children }) => {
-  return <div className={styles.main}>{children}</div>;
+interface Props {
+  className?: string;
+}
+
+const HorizontalList: FunctionComponent<Props> = ({ children, className }) => {
+  return <div className={classnames(styles.main, className)}>{children}</div>;
 };
 
 export default HorizontalList;

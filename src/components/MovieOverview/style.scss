@@ -1,4 +1,16 @@
+.cast {
+    margin-top: 96px;
+
+    @media (max-width: $mobile) {
+        margin-top: 64px;
+    }
+}
+
 .trailer {
     margin-top: 96px;
     height: 560px;
+
+    @media (max-width: $mobile) {
+        margin-top: 64px;
+    }
 }

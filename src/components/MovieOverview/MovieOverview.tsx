@@ -19,7 +19,7 @@ const MovieOverview: FunctionComponent<Props> = ({
   return (
     <>
       <MovieInfo onToggleWatchlistClick={onToggleWatchlist} {...movie} />
-      <CastList cast={movie.cast} />
+      <CastList className={styles.cast} cast={movie.cast} />
       {trailerKey !== undefined && (
         <YoutubeVideo className={styles.trailer} videoKey={trailerKey} />
       )}

@@ -5,11 +5,12 @@ import PersonCard from '../PersonCard/PersonCard';
 
 interface Props {
   cast: Cast;
+  className?: string;
 }
 
-const CastList: FunctionComponent<Props> = ({ cast }) => {
+const CastList: FunctionComponent<Props> = ({ cast, className }) => {
   return (
-    <HorizontalList>
+    <HorizontalList className={className}>
       {cast.map((person, i) => (
         <PersonCard key={i} {...person} title={person.character} />
       ))}
