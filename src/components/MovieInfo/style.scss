@@ -67,6 +67,15 @@
 .trailerLink {
     margin-top: 32px;
     display: flex;
+    transition: color .2s;
+    color: $mainColor;
+
+    &:visited {
+        color: $mainColor;
+    }
+    &:hover {
+        color: $mainColorS;
+    }
 }
 
 .playIcon {

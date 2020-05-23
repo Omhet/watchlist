@@ -10,6 +10,7 @@ interface Props {
 const YoutubeVideo: FunctionComponent<Props> = ({ videoKey, className }) => {
   return (
     <iframe
+      id="trailer"
       className={classnames(styles.main, className)}
       src={`https://www.youtube.com/embed/${videoKey}`}
       frameBorder="0"

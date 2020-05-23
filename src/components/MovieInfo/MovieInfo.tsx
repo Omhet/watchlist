@@ -21,6 +21,7 @@ const MovieInfo: FunctionComponent<Props> = ({
   creators,
   isInWatchlist,
   id,
+  trailerKey,
   onToggleWatchlistClick
 }) => {
   const movie = { poster, title, rate, isInWatchlist, id };
@@ -47,10 +48,16 @@ const MovieInfo: FunctionComponent<Props> = ({
                 <span>{genres.join(', ')}</span>
                 <span>{runtime}</span>
               </div>
-              <a className={styles.trailerLink}>
-                <PlayIcon width={16} height={16} className={styles.playIcon} />
-                <span>Watch Trailer</span>
-              </a>
+              {trailerKey !== undefined && (
+                <a href="#trailer" className={styles.trailerLink}>
+                  <PlayIcon
+                    width={16}
+                    height={16}
+                    className={styles.playIcon}
+                  />
+                  <span>Watch Trailer</span>
+                </a>
+              )}
             </div>
             <div className={styles.rate}>{rate}</div>
           </div>
