@@ -67,6 +67,7 @@
 
 .upperInfo {
     display: flex;
+    align-items: center;
     margin-bottom: 48px;
 
     @media (max-width: $mobile) {
@@ -117,6 +118,18 @@
     margin-right: 16px;
 }
 
+@mixin dot {
+    content: "\A";
+    width: 4px;
+    height: 4px;
+    position: absolute;
+    border-radius: 50%;
+    left: -12px;
+    top: 50%;
+    background: $mainColor;
+    display: inline-block;
+}
+
 .additionalInfo {
     margin-top: 8px;
 
@@ -124,15 +137,20 @@
         position: relative;
         margin-left: 20px;
         &::before {
-            content: "\A";
-            width: 4px;
-            height: 4px;
-            position: absolute;
-            border-radius: 50%;
-            left: -12px;
-            top: 50%;
-            background: $mainColor;
-            display: inline-block;
+            @include dot;
+        }
+    }
+
+    @media (max-width: $mobile) {
+        display: flex;
+        flex-direction: column;
+        & > * {
+            position: relative;
+            margin-left: 12px;
+            margin-bottom: 4px;
+            &::before {
+                @include dot;
+            }
         }
     }
 }
@@ -150,9 +168,9 @@
     margin: 0 auto;
 
     @media (max-width: $mobile) {
-        width: 80px;
-        height: 80px;
-        font-size: 35px;
+        width: 88px;
+        height: 88px;
+        font-size: 36px;
         border-width: 5px;
     }
 }
