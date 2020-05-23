@@ -46,7 +46,8 @@ const initialState: State = {
     rate: '',
     isInWatchlist: false,
     creators: [],
-    genres: []
+    genres: [],
+    cast: []
   },
   title: ''
 };
