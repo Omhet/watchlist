@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import styles from './style.scss';
 import MovieInfo from '../MovieInfo/MovieInfo';
 import CastList from '../CastList/CastList';
@@ -15,6 +15,10 @@ const MovieOverview: FunctionComponent<Props> = ({
   onToggleWatchlist
 }) => {
   const { trailerKey } = movie;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
