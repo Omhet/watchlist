@@ -18,6 +18,7 @@ export interface MovieWithInfo extends Movie {
   plot?: string;
   creators: Creators;
   cast: Cast;
+  trailerKey?: string;
 }
 
 export interface MovieRequest {
@@ -25,6 +26,8 @@ export interface MovieRequest {
   query?: string;
   id?: string;
 }
+
+export type Videos = { results: Array<{ key: string; type: string }> };
 
 export interface MovieResponseItem {
   id: string;
@@ -37,7 +40,7 @@ export interface MovieResponseItem {
   runtime: number;
   release_date: string;
   vote_average: string;
-  videos: { results: Array<{ key: string; name: string }> };
+  videos: Videos;
   credits: {
     crew: Array<{ job: string; name: string }>;
     cast: Array<{ profile_path: string; name: string; character: string }>;

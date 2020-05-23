@@ -6,7 +6,11 @@ import {
   MovieWithInfo
 } from '../../types/movie';
 import { RootState } from '../types';
-import { minutesToRuntimeString, findMainCreators } from '../../utils/movie';
+import {
+  minutesToRuntimeString,
+  findMainCreators,
+  findTrailer
+} from '../../utils/movie';
 
 export const isMovieInWatchlist = (state: RootState, id: string) => {
   const { watchlist } = state.movies;
@@ -41,7 +45,8 @@ export const getMovieWithInfoFromResponse = (
     id,
     credits: { crew, cast },
     runtime,
-    release_date
+    release_date,
+    videos
   } = response;
   return {
     id,
@@ -60,6 +65,7 @@ export const getMovieWithInfoFromResponse = (
       name,
       character,
       image: `https://image.tmdb.org/t/p/w276_and_h350_face${profile_path}`
-    }))
+    })),
+    trailerKey: findTrailer(videos)
   };
 };

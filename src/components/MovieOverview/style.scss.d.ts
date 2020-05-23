@@ -1,6 +1,6 @@
 declare namespace StyleScssModule {
   export interface IStyleScss {
-    title: string;
+    trailer: string;
   }
 }
 

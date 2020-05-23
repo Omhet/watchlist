@@ -5,7 +5,7 @@ import FeaturedMovies from '../../containers/FeaturedMovies';
 import { Switch, Route } from 'react-router-dom';
 import WatchlistMovies from '../../containers/WatchlistMovies';
 import SearchMovies from '../../containers/SearchMovies';
-import MovieOverview from '../../containers/MovieOverview';
+import MovieOverview from '../../containers/MovieOverviewContainer';
 
 const App: FunctionComponent = () => {
   return (
