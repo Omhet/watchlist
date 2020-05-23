@@ -187,6 +187,11 @@
     overflow: hidden;
     line-height: 1.2;
     max-height: 6em;
+
+    @media (max-width: $mobile) {
+        max-height: 12em;
+        -webkit-line-clamp: 10;
+    }
 }
 
 .creators {
