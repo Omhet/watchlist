@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import styles from './style.scss';
 
 interface Props {
-  videoKey?: string;
+  videoKey: string;
   className?: string;
 }
 

@@ -14,11 +14,15 @@ const MovieOverview: FunctionComponent<Props> = ({
   movie,
   onToggleWatchlist
 }) => {
+  const { trailerKey } = movie;
+
   return (
     <>
       <MovieInfo onToggleWatchlistClick={onToggleWatchlist} {...movie} />
       <CastList cast={movie.cast} />
-      <YoutubeVideo className={styles.trailer} videoKey={movie.trailerKey} />
+      {trailerKey !== undefined && (
+        <YoutubeVideo className={styles.trailer} videoKey={trailerKey} />
+      )}
     </>
   );
 };
