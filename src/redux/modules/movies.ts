@@ -20,6 +20,9 @@ import {
 import { ThunkAction } from '../types';
 
 export const fsa = {
+  setMoviesToWatchlist: createAction('MOVIES/SET_MOVIES_TO_WATCHLIST')<
+    Movies
+  >(),
   setMoviesToShow: createAction('MOVIES/SET_MOVIES_TO_SHOW')<Movies>(),
   addMoviesToShow: createAction('MOVIES/ADD_MOVIES_TO_SHOW')<Movies>(),
   setMovieToOverview: createAction('MOVIES/SET_MOVIE_TO_SHOW')<MovieWithInfo>(),
@@ -53,6 +56,10 @@ const initialState: State = {
 };
 
 export const movies = withState(initialState)
+  .add(fsa.setMoviesToWatchlist, (state, { payload }) => ({
+    ...state,
+    watchlist: payload
+  }))
   .add(fsa.setMoviesToShow, (state, { payload }) => ({
     ...state,
     toShow: payload

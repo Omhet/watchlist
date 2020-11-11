@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import styles from './style.scss';
 import PageHeader from '../PageHeader/PageHeader';
 import FeaturedMovies from '../../containers/FeaturedMovies';
@@ -7,7 +7,15 @@ import WatchlistMovies from '../../containers/WatchlistMovies';
 import SearchMovies from '../../containers/SearchMovies';
 import MovieOverview from '../../containers/MovieOverviewContainer';
 
-const App: FunctionComponent = () => {
+export interface AppProps {
+  onStart(): void;
+}
+
+const App: FunctionComponent<AppProps> = ({ onStart }) => {
+  useEffect(() => {
+    onStart();
+  }, []);
+
   return (
     <div className={styles.main}>
       <PageHeader />
