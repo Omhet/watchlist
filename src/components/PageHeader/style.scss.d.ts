@@ -2,6 +2,7 @@ declare namespace StyleScssNamespace {
   export interface IStyleScss {
     main: string;
     search: string;
+    signButton: string;
   }
 }
 

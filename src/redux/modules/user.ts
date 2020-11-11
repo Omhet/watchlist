@@ -3,22 +3,22 @@ import { User } from '../../types/user';
 import { withState } from '../helpers/typesafe-reducer';
 
 export const fsa = {
-  signIn: createAction('USER/SIGN IN')<Omit<User, 'isLoggedIn'>>(),
+  signIn: createAction('USER/SIGN IN')<Omit<User, 'isSignedIn'>>(),
   signOut: createAction('USER/SIGN OUT')()
 };
 export const userFsa = fsa;
 
 const initialState: User = {
-  isLoggedIn: false
+  isSignedIn: false
 };
 
-export const movies = withState(initialState)
+export const user = withState(initialState)
   .add(fsa.signIn, (state, { payload }) => ({
     ...state,
     ...payload,
-    isLoggedIn: true
+    isSignedIn: true
   }))
   .add(fsa.signOut, state => ({
     ...state,
-    isLoggedIn: false
+    isSignedIn: false
   }));

@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import styles from './style.scss';
-import PageHeader from '../PageHeader/PageHeader';
 import FeaturedMovies from '../../containers/FeaturedMovies';
 import { Switch, Route } from 'react-router-dom';
 import WatchlistMovies from '../../containers/WatchlistMovies';
 import SearchMovies from '../../containers/SearchMovies';
 import MovieOverview from '../../containers/MovieOverviewContainer';
+import PageHeader from '../../containers/PageHeader';
 
 export interface AppProps {
   onStart(): void;

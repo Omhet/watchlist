@@ -35,5 +35,8 @@ export const fetchMovieInfo = async ({
 export const fetchCurrentUser = async (): Promise<UserResponse> => {
   const res = await fetch(`${process.env.WATCHLIST_API_URL}/me`);
   const data = await res.json();
+  if (data.error) {
+    throw new Error(data.error);
+  }
   return data;
 };
