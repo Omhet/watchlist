@@ -33,10 +33,28 @@ export const fetchMovieInfo = async ({
 };
 
 export const fetchCurrentUser = async (): Promise<UserResponse> => {
-  const res = await fetch(`${process.env.WATCHLIST_API_URL}/me`);
+  const res = await fetch(`${process.env.WATCHLIST_API_URL}/me`, {
+    credentials: 'include'
+  });
   const data = await res.json();
   if (data.error) {
     throw new Error(data.error);
   }
   return data;
+};
+
+export const signInUser = async (
+  username: string,
+  password: string
+): Promise<any> => {
+  const body = JSON.stringify({
+    username,
+    password
+  });
+  await fetch(`${process.env.WATCHLIST_API_URL}/auth/login`, {
+    method: 'POST',
+    body,
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' }
+  });
 };
