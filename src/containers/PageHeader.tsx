@@ -1,13 +1,19 @@
 import { connect } from 'react-redux';
-import PageHeader, {
-  PageHeaderProps
-} from '../components/PageHeader/PageHeader';
-import { RootState } from '../redux/types';
+import PageHeader from '../components/PageHeader/PageHeader';
+import { dialogFsa } from '../redux/modules/dialog';
+import { Dispatch, RootState } from '../redux/types';
+import { DialogId } from '../types/dialog';
 
-const mapState = (state: RootState): PageHeaderProps => {
+const mapState = (state: RootState) => {
   return {
     showSignInButton: !state.user.isSignedIn
   };
 };
 
-export default connect(mapState)(PageHeader);
+const mapDispatch = (dispatch: Dispatch) => ({
+  onSignInClick: () => {
+    dispatch(dialogFsa.openDialog(DialogId.SignIn));
+  }
+});
+
+export default connect(mapState, mapDispatch)(PageHeader);

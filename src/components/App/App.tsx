@@ -6,7 +6,7 @@ import WatchlistMovies from '../../containers/WatchlistMovies';
 import SearchMovies from '../../containers/SearchMovies';
 import MovieOverview from '../../containers/MovieOverviewContainer';
 import PageHeader from '../../containers/PageHeader';
-import Dialogs from '../Dialogs/Dialogs';
+import Dialogs from '../../containers/dialogs/Dialogs';
 
 export interface AppProps {
   onStart(): void;
@@ -19,13 +19,9 @@ const App: FunctionComponent<AppProps> = ({ onStart }) => {
 
   return (
     <div className={styles.main}>
+      <Dialogs />
+
       <PageHeader />
-      <Route
-        path="/"
-        render={({ location: { hash } }) => {
-          return <Dialogs id={hash.slice(1)} />;
-        }}
-      />
       <Route
         exact
         path="/movie"

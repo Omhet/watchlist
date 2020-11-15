@@ -8,10 +8,12 @@ import Button from '../Button/Button';
 
 export interface PageHeaderProps {
   showSignInButton: boolean;
+  onSignInClick(): void;
 }
 
 const PageHeader: FunctionComponent<PageHeaderProps> = ({
-  showSignInButton
+  showSignInButton,
+  onSignInClick
 }) => {
   const history = useHistory();
 
@@ -28,7 +30,9 @@ const PageHeader: FunctionComponent<PageHeaderProps> = ({
         />
       </div>
       {showSignInButton ? (
-        <Button className={styles.signButton}>Sign in</Button>
+        <Button onClick={onSignInClick} className={styles.signButton}>
+          Sign in
+        </Button>
       ) : (
         <Link to="/list">
           <WatchlistCounter />

@@ -1,12 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import SignInDialog from '../../containers/dialogs/SignInDialog';
+import { DialogId } from '../../types/dialog';
 
 interface DialogsProps {
-  id: string;
+  id?: DialogId;
 }
 const Dialogs: FunctionComponent<DialogsProps> = ({ id }) => {
   switch (id) {
-    case 'sign':
+    case DialogId.SignIn:
       return <SignInDialog />;
     default:
       return null;
