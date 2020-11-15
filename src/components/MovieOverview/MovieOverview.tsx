@@ -3,17 +3,13 @@ import styles from './style.scss';
 import MovieInfo from '../MovieInfo/MovieInfo';
 import CastList from '../CastList/CastList';
 import YoutubeVideo from '../YoutubeVideo/YoutubeVideo';
-import { Movie, MovieWithInfo } from '../../types/movie';
+import { MovieWithInfo } from '../../types/movie';
 
 interface Props {
   movie: MovieWithInfo;
-  onToggleWatchlist(movie: Movie): void;
 }
 
-const MovieOverview: FunctionComponent<Props> = ({
-  movie,
-  onToggleWatchlist
-}) => {
+const MovieOverview: FunctionComponent<Props> = ({ movie }) => {
   const { trailerKey } = movie;
 
   useEffect(() => {
@@ -22,7 +18,7 @@ const MovieOverview: FunctionComponent<Props> = ({
 
   return (
     <>
-      <MovieInfo onToggleWatchlistClick={onToggleWatchlist} {...movie} />
+      <MovieInfo {...movie} />
       <CastList className={styles.cast} cast={movie.cast} />
       {trailerKey !== undefined && (
         <YoutubeVideo className={styles.trailer} videoKey={trailerKey} />

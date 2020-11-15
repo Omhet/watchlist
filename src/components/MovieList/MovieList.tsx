@@ -1,20 +1,15 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import styles from './style.scss';
-import { Movie, Movies } from '../../types/movie';
+import { Movies } from '../../types/movie';
 import MoviePreview from '../MoviePreview/MoviePreview';
 
 interface Props {
   movies: Movies;
-  onWatchlistClick(movie: Movie): void;
   onReachListEnd?(page: number): void;
 }
 
-const MovieList: FunctionComponent<Props> = ({
-  movies,
-  onWatchlistClick,
-  onReachListEnd
-}) => {
+const MovieList: FunctionComponent<Props> = ({ movies, onReachListEnd }) => {
   const [ref, inView] = useInView({ triggerOnce: true });
 
   const [page, setPage] = useState(1);
@@ -30,7 +25,7 @@ const MovieList: FunctionComponent<Props> = ({
     <div className={styles.main}>
       {movies.map(movie => (
         <div ref={onReachListEnd ? ref : null} key={movie.id}>
-          <MoviePreview onWatchlistClick={onWatchlistClick} movie={movie} />
+          <MoviePreview movie={movie} />
         </div>
       ))}
     </div>

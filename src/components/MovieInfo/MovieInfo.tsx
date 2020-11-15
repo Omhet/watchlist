@@ -1,12 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import styles from './style.scss';
 import PlayIcon from '../../icons/Play.svg';
-import { MovieWithInfo, Movie } from '../../types/movie';
+import { MovieWithInfo } from '../../types/movie';
 import MoviePreview from '../MoviePreview/MoviePreview';
 
-interface Props extends MovieWithInfo {
-  onToggleWatchlistClick(movie: Movie): void;
-}
+type Props = MovieWithInfo;
 
 const MovieInfo: FunctionComponent<Props> = ({
   backdropPoster,
@@ -21,20 +19,14 @@ const MovieInfo: FunctionComponent<Props> = ({
   creators,
   isInWatchlist,
   id,
-  trailerKey,
-  onToggleWatchlistClick
+  trailerKey
 }) => {
   const movie = { poster, title, rate, isInWatchlist, id };
   return (
     <div className={styles.main}>
       <div className={styles.overview}>
         <div className={styles.preview}>
-          <MoviePreview
-            onWatchlistClick={onToggleWatchlistClick}
-            movie={movie}
-            showInfo={false}
-            size="m"
-          />
+          <MoviePreview movie={movie} showInfo={false} size="m" />
         </div>
 
         <div className={styles.infoBlock}>

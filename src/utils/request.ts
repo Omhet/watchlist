@@ -1,4 +1,9 @@
-import { MovieRequest, MovieResponse, MovieResponseItem } from '../types/movie';
+import {
+  Movie,
+  MovieRequest,
+  MovieResponse,
+  MovieResponseItem
+} from '../types/movie';
 import { UserResponse } from '../types/user';
 
 export const fetchFeaturedMovies = async ({
@@ -54,6 +59,26 @@ export const signInUser = async (
   await fetch(`${process.env.WATCHLIST_API_URL}/auth/login`, {
     method: 'POST',
     body,
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' }
+  });
+};
+
+export const addMovieToWatchlist = async (
+  movie: Omit<Movie, 'isInWatchlist'>
+): Promise<any> => {
+  const body = JSON.stringify(movie);
+  await fetch(`${process.env.WATCHLIST_API_URL}/me/movies`, {
+    method: 'POST',
+    body,
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' }
+  });
+};
+
+export const removeMovieFromWatchlist = async (id: string): Promise<any> => {
+  await fetch(`${process.env.WATCHLIST_API_URL}/me/movies/${id}`, {
+    method: 'DELETE',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' }
   });

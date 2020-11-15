@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
-import { RootState, Dispatch } from '../redux/types';
+import { RootState } from '../redux/types';
 import MovieList from '../components/MovieList/MovieList';
-import { toggleMovieInWatchlist } from '../redux/modules/movies';
-import { Movie } from '../types/movie';
 
 const mapState = (state: RootState) => {
   return {
@@ -10,10 +8,4 @@ const mapState = (state: RootState) => {
   };
 };
 
-const mapDispatch = (dispatch: Dispatch) => ({
-  onWatchlistClick: (movie: Movie) => {
-    dispatch(toggleMovieInWatchlist(movie));
-  }
-});
-
-export default connect(mapState, mapDispatch)(MovieList);
+export default connect(mapState)(MovieList);

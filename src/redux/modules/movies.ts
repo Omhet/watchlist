@@ -15,9 +15,13 @@ import {
 import {
   fetchFeaturedMovies,
   fetchSearchMovies,
-  fetchMovieInfo
+  fetchMovieInfo,
+  addMovieToWatchlist,
+  removeMovieFromWatchlist
 } from '../../utils/request';
 import { ThunkAction } from '../types';
+import { dialogFsa } from './dialog';
+import { DialogId } from '../../types/dialog';
 
 export const fsa = {
   setMoviesToWatchlist: createAction('MOVIES/SET_MOVIES_TO_WATCHLIST')<
@@ -170,7 +174,7 @@ export const showWatchlistMovies = (): ThunkAction => (dispatch, getState) => {
   dispatch(fsa.setMoviesToShow(watchlist));
 };
 
-export const toggleMovieInWatchlist = (movie: Movie): ThunkAction => (
+export const toggleMovieInWatchlistLocally = (movie: Movie): ThunkAction => (
   dispatch,
   getState
 ) => {
