@@ -7,6 +7,7 @@ import SearchMovies from '../../containers/SearchMovies';
 import MovieOverview from '../../containers/MovieOverviewContainer';
 import PageHeader from '../../containers/PageHeader';
 import Dialogs from '../../containers/dialogs/Dialogs';
+import UserProfile from '../../containers/UserProfile';
 
 export interface AppProps {
   onStart(): void;
@@ -22,6 +23,11 @@ const App: FunctionComponent<AppProps> = ({ onStart }) => {
       <Dialogs />
 
       <PageHeader />
+
+      <Route exact path="/user">
+        <UserProfile />
+      </Route>
+
       <Route
         exact
         path="/movie"
