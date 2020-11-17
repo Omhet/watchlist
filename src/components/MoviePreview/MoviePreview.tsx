@@ -48,14 +48,17 @@ const MoviePreview: FunctionComponent<Props> = ({
     }
 
     setIsLoading(true);
-    if (!isInWatchlist) {
-      await addMovieToWatchlist(movie);
-    } else {
-      await removeMovieFromWatchlist(id);
+    try {
+      if (!isInWatchlist) {
+        await addMovieToWatchlist(movie);
+      } else {
+        await removeMovieFromWatchlist(id);
+      }
+      dispatch(toggleMovieInWatchlistLocally(movie));
+    } catch (error) {
+      console.error(error);
     }
     setIsLoading(false);
-
-    dispatch(toggleMovieInWatchlistLocally(movie));
   }, [isInWatchlist, isSignedIn, isLoading, movie, id]);
 
   const handleMovieClick = () => {
