@@ -1,7 +1,8 @@
 import React, { FunctionComponent, useCallback } from 'react';
 import MoviesBlock from '../components/MoviesBlock/MoviesBlock';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { moviesFsa, showSearchMovies } from '../redux/modules/movies';
+import { RootState } from '../redux/types';
 
 interface Props {
   query: string;
@@ -21,8 +22,11 @@ const SearchMovies: FunctionComponent<Props> = ({ query }) => {
     [query]
   );
 
+  const movies = useSelector((state: RootState) => state.movies.toShow);
+
   return (
     <MoviesBlock
+      movies={movies}
       onReachMovieListEnd={handleReachListEnd}
       onMount={handleMount}
     />

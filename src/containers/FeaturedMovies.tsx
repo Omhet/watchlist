@@ -1,7 +1,13 @@
 import { connect } from 'react-redux';
 import { moviesFsa, showFeaturedMovies } from '../redux/modules/movies';
-import { Dispatch } from '../redux/types';
+import { Dispatch, RootState } from '../redux/types';
 import MoviesBlock from '../components/MoviesBlock/MoviesBlock';
+
+const mapState = (state: RootState) => {
+  return {
+    movies: state.movies.toShow
+  };
+};
 
 const mapDispatch = (dispatch: Dispatch) => ({
   onMount: () => {
@@ -13,4 +19,4 @@ const mapDispatch = (dispatch: Dispatch) => ({
   }
 });
 
-export default connect(null, mapDispatch)(MoviesBlock);
+export default connect(mapState, mapDispatch)(MoviesBlock);

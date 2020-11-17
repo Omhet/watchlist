@@ -36,7 +36,6 @@ export const signIn = (
   username: string,
   password: string
 ): ThunkAction => async dispatch => {
-  console.log(username, password);
   await signInUser(username, password);
   dispatch(getCurrentUser());
 };
