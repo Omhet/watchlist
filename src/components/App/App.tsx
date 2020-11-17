@@ -10,10 +10,11 @@ import Dialogs from '../../containers/dialogs/Dialogs';
 import UserProfile from '../../containers/UserProfile';
 
 export interface AppProps {
+  isUserSignedIn: boolean;
   onStart(): void;
 }
 
-const App: FunctionComponent<AppProps> = ({ onStart }) => {
+const App: FunctionComponent<AppProps> = ({ onStart, isUserSignedIn }) => {
   useEffect(() => {
     onStart();
   }, []);
@@ -25,7 +26,7 @@ const App: FunctionComponent<AppProps> = ({ onStart }) => {
       <PageHeader />
 
       <Route exact path="/user">
-        <UserProfile />
+        {isUserSignedIn && <UserProfile />}
       </Route>
 
       <Route
@@ -39,7 +40,7 @@ const App: FunctionComponent<AppProps> = ({ onStart }) => {
       <div className={styles.moviesBlock}>
         <Switch>
           <Route exact path="/list">
-            <WatchlistMovies />
+            {isUserSignedIn && <WatchlistMovies />}
           </Route>
           <Route
             exact

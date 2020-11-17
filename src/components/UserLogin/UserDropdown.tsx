@@ -3,6 +3,7 @@ import styles from './style.scss';
 import Button from '../Button/Button';
 import Dropdown from '../Dropdown/Dropdown';
 import UserIcon from '../../icons/User.svg';
+import { Link } from 'react-router-dom';
 
 interface Props {
   username?: string;
@@ -21,7 +22,7 @@ const UserDropdown: FunctionComponent<Props> = ({
 
   return (
     <Dropdown header={UserHeader}>
-      <Button>Profile</Button>
+      <Link to="user">Profile</Link>
       <Button onClick={onLogoutClick}>Logout</Button>
     </Dropdown>
   );

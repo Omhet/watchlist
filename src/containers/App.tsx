@@ -1,7 +1,13 @@
 import { connect } from 'react-redux';
 import App from '../components/App/App';
 import { startApp } from '../redux/modules/application';
-import { Dispatch } from '../redux/types';
+import { Dispatch, RootState } from '../redux/types';
+
+const mapState = (state: RootState) => {
+  return {
+    isUserSignedIn: state.user.isSignedIn
+  };
+};
 
 const mapDispatch = (dispatch: Dispatch) => ({
   onStart: () => {
@@ -9,4 +15,4 @@ const mapDispatch = (dispatch: Dispatch) => ({
   }
 });
 
-export default connect(null, mapDispatch)(App);
+export default connect(mapState, mapDispatch)(App);
