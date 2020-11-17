@@ -1,31 +1,28 @@
 import { createAction } from 'typesafe-actions';
-import { withState } from '../helpers/typesafe-reducer';
 import {
   Movie,
-  Movies,
   MovieRequest,
   MovieResponse,
+  Movies,
   MovieWithInfo
 } from '../../types/movie';
 import {
-  getMoviesFromResponse,
-  isMovieInWatchlist,
-  getMovieWithInfoFromResponse
-} from '../selectors/movies';
-import {
   fetchFeaturedMovies,
-  fetchSearchMovies,
   fetchMovieInfo,
-  addMovieToWatchlist,
-  removeMovieFromWatchlist
+  fetchSearchMovies
 } from '../../utils/request';
+import { withState } from '../helpers/typesafe-reducer';
+import {
+  getMoviesFromResponse,
+  getMovieWithInfoFromResponse,
+  isMovieInWatchlist
+} from '../selectors/movies';
 import { ThunkAction } from '../types';
-import { dialogFsa } from './dialog';
-import { DialogId } from '../../types/dialog';
 
 export const fsa = {
-  setMoviesToWatchlist: createAction('MOVIES/SET_MOVIES_TO_WATCHLIST')<
-    Movies
+  setWatchlist: createAction('MOVIES/SET_MOVIES_TO_WATCHLIST')<Movies>(),
+  setWatchlistSet: createAction('MOVIES/SET_MOVIES_TO_WATCHLIST_SET')<
+    Set<string>
   >(),
   setMoviesToShow: createAction('MOVIES/SET_MOVIES_TO_SHOW')<Movies>(),
   addMoviesToShow: createAction('MOVIES/ADD_MOVIES_TO_SHOW')<Movies>(),
@@ -39,6 +36,7 @@ export const moviesFsa = fsa;
 interface State {
   toShow: Movies;
   watchlist: Movies;
+  watchlistSet: Set<string>;
   movieOverview: MovieWithInfo;
   title: string;
 }
@@ -46,12 +44,12 @@ interface State {
 const initialState: State = {
   toShow: [],
   watchlist: [],
+  watchlistSet: new Set(),
   movieOverview: {
     id: '',
     poster: '',
     title: '',
     rate: '',
-    isInWatchlist: false,
     creators: [],
     genres: [],
     cast: []
@@ -60,9 +58,14 @@ const initialState: State = {
 };
 
 export const movies = withState(initialState)
-  .add(fsa.setMoviesToWatchlist, (state, { payload }) => ({
+  .add(fsa.setWatchlist, (state, { payload }) => ({
     ...state,
-    watchlist: payload
+    watchlist: payload,
+    watchlistSet: new Set(payload.map(({ id }) => id))
+  }))
+  .add(fsa.setWatchlistSet, (state, { payload }) => ({
+    ...state,
+    watchlistSet: payload
   }))
   .add(fsa.setMoviesToShow, (state, { payload }) => ({
     ...state,
@@ -81,58 +84,39 @@ export const movies = withState(initialState)
     title: payload
   }))
   .add(fsa.addMovieToWatchlist, (state, { payload }) => {
+    const { watchlistSet } = state;
     const { id } = payload;
 
-    const watchlist = [...state.watchlist, { ...payload, isInWatchlist: true }];
-
-    const toShow = state.toShow.map(m => {
-      if (m.id === id) {
-        return { ...m, isInWatchlist: true };
-      }
-      return m;
-    });
-
-    const movieOverview = { ...state.movieOverview };
-    movieOverview.isInWatchlist = true;
+    const watchlist = [...state.watchlist, { ...payload }];
+    watchlistSet.add(id);
 
     return {
       ...state,
-      watchlist,
-      toShow,
-      movieOverview
+      watchlist
     };
   })
   .add(fsa.removeMovieFromWatchlist, (state, { payload: id }) => {
+    const { watchlistSet } = state;
+
     const watchlist = state.watchlist.filter(m => {
       if (m.id === id) {
         return false;
       }
       return true;
     });
-    const toShow = state.toShow.map(m => {
-      if (m.id === id) {
-        return { ...m, isInWatchlist: false };
-      }
-      return m;
-    });
-
-    const movieOverview = { ...state.movieOverview };
-    movieOverview.isInWatchlist = false;
+    watchlistSet.delete(id);
 
     return {
       ...state,
-      watchlist,
-      toShow,
-      movieOverview
+      watchlist
     };
   });
 
 export const showMoviesFromResponse = (
   request: MovieRequest,
   response: MovieResponse
-): ThunkAction => (dispatch, getState) => {
-  const state = getState();
-  const movies = getMoviesFromResponse(state, response);
+): ThunkAction => dispatch => {
+  const movies = getMoviesFromResponse(response);
   if (request.page !== undefined && request.page > 1) {
     dispatch(fsa.addMoviesToShow(movies));
   } else {

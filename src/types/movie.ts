@@ -3,7 +3,6 @@ export interface Movie {
   poster: string;
   title: string;
   rate: string;
-  isInWatchlist: boolean;
 }
 
 export type Cast = Array<{ image: string; name: string; character: string }>;

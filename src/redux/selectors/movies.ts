@@ -13,19 +13,15 @@ import {
 } from '../../utils/movie';
 
 export const isMovieInWatchlist = (state: RootState, id: string) => {
-  const { watchlist } = state.movies;
-  return watchlist.some(m => m.id === id);
+  const { watchlistSet } = state.movies;
+  return watchlistSet.has(id);
 };
 
-export const getMoviesFromResponse = (
-  state: RootState,
-  response: MovieResponse
-): Movies => {
+export const getMoviesFromResponse = (response: MovieResponse): Movies => {
   return response.map(({ poster_path, vote_average, title, id }) => ({
-    id,
+    id: String(id),
     rate: vote_average,
     title,
-    isInWatchlist: isMovieInWatchlist(state, id),
     poster: `https://image.tmdb.org/t/p/w342${poster_path}`
   }));
 };
@@ -49,10 +45,9 @@ export const getMovieWithInfoFromResponse = (
     videos
   } = response;
   return {
-    id,
+    id: String(id),
     rate: vote_average,
     title,
-    isInWatchlist: isMovieInWatchlist(state, id),
     poster: `https://image.tmdb.org/t/p/w342${poster_path}`,
     backdropPoster: `https://image.tmdb.org/t/p/w1280${backdrop_path}`,
     tagline,

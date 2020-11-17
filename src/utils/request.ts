@@ -64,9 +64,7 @@ export const signInUser = async (
   });
 };
 
-export const addMovieToWatchlist = async (
-  movie: Omit<Movie, 'isInWatchlist'>
-): Promise<any> => {
+export const addMovieToWatchlist = async (movie: Movie): Promise<any> => {
   const body = JSON.stringify(movie);
   await fetch(`${process.env.WATCHLIST_API_URL}/me/movies`, {
     method: 'POST',

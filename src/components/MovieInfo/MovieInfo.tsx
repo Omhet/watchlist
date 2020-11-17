@@ -17,11 +17,10 @@ const MovieInfo: FunctionComponent<Props> = ({
   title,
   rate,
   creators,
-  isInWatchlist,
   id,
   trailerKey
 }) => {
-  const movie = { poster, title, rate, isInWatchlist, id };
+  const movie = { poster, title, rate, id };
   return (
     <div className={styles.main}>
       <div className={styles.overview}>

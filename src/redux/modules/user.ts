@@ -1,5 +1,4 @@
 import { createAction } from 'typesafe-actions';
-import { Movies } from '../../types/movie';
 import { User } from '../../types/user';
 import { fetchCurrentUser, signInUser } from '../../utils/request';
 import { withState } from '../helpers/typesafe-reducer';
@@ -30,11 +29,7 @@ export const user = withState(initialState)
 export const getCurrentUser = (): ThunkAction => async dispatch => {
   const { username, movies } = await fetchCurrentUser();
   dispatch(userFsa.signIn({ username }));
-  const moviesInWatchlist: Movies = movies.map(movie => ({
-    ...movie,
-    isInWatchlist: true
-  }));
-  dispatch(moviesFsa.setMoviesToWatchlist(moviesInWatchlist));
+  dispatch(moviesFsa.setWatchlist(movies));
 };
 
 export const signIn = (

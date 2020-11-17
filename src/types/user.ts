@@ -1,4 +1,4 @@
-import { Movie } from './movie';
+import { Movies } from './movie';
 
 export interface User {
   isSignedIn: boolean;
@@ -6,5 +6,5 @@ export interface User {
 }
 
 export type UserResponse = Omit<User, 'isSignedIn'> & {
-  movies: Omit<Movie, 'isInWatchlist'>[];
+  movies: Movies;
 };

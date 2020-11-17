@@ -17,6 +17,7 @@ import {
 import { toggleMovieInWatchlistLocally } from '../../redux/modules/movies';
 import { dialogFsa } from '../../redux/modules/dialog';
 import { DialogId } from '../../types/dialog';
+import { isMovieInWatchlist } from '../../redux/selectors/movies';
 
 interface Props {
   movie: Movie;
@@ -29,10 +30,13 @@ const MoviePreview: FunctionComponent<Props> = ({
   showInfo = true,
   size = 's'
 }) => {
-  const { poster, title, rate, isInWatchlist, id } = movie;
+  const { poster, title, rate, id } = movie;
   const dispatch = useDispatch();
   const history = useHistory();
   const isSignedIn = useSelector((state: RootState) => state.user.isSignedIn);
+  const isInWatchlist = useSelector((state: RootState) =>
+    isMovieInWatchlist(state, id)
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   const handleWatchlistClick = useCallback(async () => {
