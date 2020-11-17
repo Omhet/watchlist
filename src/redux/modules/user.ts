@@ -1,6 +1,6 @@
 import { createAction } from 'typesafe-actions';
 import { User } from '../../types/user';
-import { fetchCurrentUser, signInUser } from '../../utils/request';
+import { fetchCurrentUser, signInUser, signOutUser } from '../../utils/request';
 import { withState } from '../helpers/typesafe-reducer';
 import { ThunkAction } from '../types';
 import { moviesFsa } from './movies';
@@ -38,4 +38,10 @@ export const signIn = (
 ): ThunkAction => async dispatch => {
   await signInUser(username, password);
   dispatch(getCurrentUser());
+};
+
+export const signOut = (): ThunkAction => async dispatch => {
+  await signOutUser();
+  dispatch(fsa.signOut());
+  dispatch(moviesFsa.setWatchlist([]));
 };

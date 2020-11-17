@@ -1,5 +1,5 @@
 import React from 'react';
-import UserLogin from '../components/UserLogin/UserLogin';
+import UserLogin from '../components/UserLogin/UserDropdown';
 
 export default {
   title: 'UserLogin'

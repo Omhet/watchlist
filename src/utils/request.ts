@@ -64,6 +64,14 @@ export const signInUser = async (
   });
 };
 
+export const signOutUser = async (): Promise<any> => {
+  await fetch(`${process.env.WATCHLIST_API_URL}/auth/logout`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' }
+  });
+};
+
 export const addMovieToWatchlist = async (movie: Movie): Promise<any> => {
   const body = JSON.stringify(movie);
   await fetch(`${process.env.WATCHLIST_API_URL}/me/movies`, {

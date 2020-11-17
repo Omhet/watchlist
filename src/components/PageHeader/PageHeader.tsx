@@ -5,14 +5,17 @@ import SearchBar from '../SearchBar/SearchBar';
 import Logo from '../Logo/Logo';
 import WatchlistCounter from '../../containers/WatchlistCounter';
 import Button from '../Button/Button';
+import UserDropdown from '../../containers/UserDropdown';
 
 export interface PageHeaderProps {
   showSignInButton: boolean;
+  showUserDropdown: boolean;
   onSignInClick(): void;
 }
 
 const PageHeader: FunctionComponent<PageHeaderProps> = ({
   showSignInButton,
+  showUserDropdown,
   onSignInClick
 }) => {
   const history = useHistory();
@@ -38,6 +41,7 @@ const PageHeader: FunctionComponent<PageHeaderProps> = ({
           <WatchlistCounter />
         </Link>
       )}
+      {showUserDropdown && <UserDropdown />}
     </div>
   );
 };

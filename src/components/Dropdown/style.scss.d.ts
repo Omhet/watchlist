@@ -1,4 +1,4 @@
-declare namespace StyleScssModule {
+declare namespace StyleScssNamespace {
   export interface IStyleScss {
     arrow: string;
     body: string;
@@ -8,9 +8,9 @@ declare namespace StyleScssModule {
   }
 }
 
-declare const StyleScssModule: StyleScssModule.IStyleScss & {
+declare const StyleScssModule: StyleScssNamespace.IStyleScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: StyleScssModule.IStyleScss;
+  locals: StyleScssNamespace.IStyleScss;
 };
 
 export = StyleScssModule;

@@ -5,33 +5,26 @@ import Dropdown from '../Dropdown/Dropdown';
 import UserIcon from '../../icons/User.svg';
 
 interface Props {
-  isUserLoggedIn: boolean;
-  userName?: string;
-  onLoginClick?(): void;
+  username?: string;
   onLogoutClick?(): void;
 }
 
-const UserLogin: FunctionComponent<Props> = ({
-  onLoginClick,
+const UserDropdown: FunctionComponent<Props> = ({
   onLogoutClick,
-  isUserLoggedIn,
-  userName = 'User'
+  username = 'User'
 }) => {
-  const LoginButton = <Button onClick={onLoginClick}>Login</Button>;
-
   const UserHeader = (
     <div className={styles.userHeader}>
-      <UserIcon className={styles.userIcon} /> {userName}
+      <UserIcon className={styles.userIcon} /> {username}
     </div>
   );
 
-  const UserDropdown = (
+  return (
     <Dropdown header={UserHeader}>
+      <Button>Profile</Button>
       <Button onClick={onLogoutClick}>Logout</Button>
     </Dropdown>
   );
-
-  return <>{isUserLoggedIn ? UserDropdown : LoginButton}</>;
 };
 
-export default UserLogin;
+export default UserDropdown;

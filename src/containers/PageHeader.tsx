@@ -6,7 +6,8 @@ import { DialogId } from '../types/dialog';
 
 const mapState = (state: RootState) => {
   return {
-    showSignInButton: !state.user.isSignedIn
+    showSignInButton: !state.user.isSignedIn,
+    showUserDropdown: state.user.isSignedIn
   };
 };
 
