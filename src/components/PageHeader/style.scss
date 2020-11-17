@@ -14,22 +14,8 @@
     left: 0;
   }
 
-  $margin: 32px;
-  & > :first-child {
-    margin-right: $margin;
-  }
-  & > :last-child {
-    margin-left: $margin;
-  }
-
-  @media (max-width: $mobile) {
-    $margin: 16px;
-    & > :first-child {
-      margin-right: $margin;
-    }
-    & > :last-child {
-      margin-left: $margin;
-    }
+  & > * + * {
+    margin-left: 32px;
   }
 }
 
@@ -38,5 +24,6 @@
 }
 
 .signButton {
+  margin-left: 128px;
   width: auto;
 }
