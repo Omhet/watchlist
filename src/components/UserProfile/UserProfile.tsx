@@ -1,14 +1,24 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useState
+} from 'react';
 import Button from '../Button/Button';
 import Title from '../Title/Title';
 import styles from './style.scss';
 
-interface Props {
-  name?: string;
-  onMount(): void;
+interface SaveParams {
+  username: string;
+  password: string;
 }
 
-const UserProfile: FunctionComponent<Props> = ({ name, onMount }) => {
+interface Props {
+  onMount(): void;
+  onSave(params: SaveParams): void;
+}
+
+const UserProfile: FunctionComponent<Props> = ({ onMount, onSave }) => {
   useEffect(() => {
     onMount();
   });
@@ -17,10 +27,14 @@ const UserProfile: FunctionComponent<Props> = ({ name, onMount }) => {
   const [oldPassword, setOldPassword] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleSave = useCallback(() => {
+    onSave({ username, password });
+  }, [username, password]);
+
   return (
     <div className={styles.main}>
       <Title text={`User profile`} />
-      <form className={styles.userInfo}>
+      <form onSubmit={e => e.preventDefault()} className={styles.userInfo}>
         <input
           onChange={e => setUsername(e.target.value)}
           value={username}
@@ -39,6 +53,7 @@ const UserProfile: FunctionComponent<Props> = ({ name, onMount }) => {
           placeholder="New password"
           type="password"
         />
+        <Button onClick={handleSave}>Save</Button>
       </form>
       <Button className={styles.deleteAccountButton}>Delete account</Button>
     </div>
