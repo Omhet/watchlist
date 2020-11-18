@@ -1,13 +1,22 @@
 import { createAction } from 'typesafe-actions';
-import { User } from '../../types/user';
-import { fetchCurrentUser, signInUser, signOutUser } from '../../utils/request';
+import { User, UserUpdateParams } from '../../types/user';
+import {
+  fetchCurrentUser,
+  signInUser,
+  signOutUser,
+  updateCurrentUser
+} from '../../utils/request';
 import { withState } from '../helpers/typesafe-reducer';
+import { getUserName } from '../selectors/user';
 import { ThunkAction } from '../types';
 import { moviesFsa } from './movies';
 
+type UserInfo = Omit<User, 'isSignedIn'>;
+
 export const fsa = {
-  signIn: createAction('USER/SIGN IN')<Omit<User, 'isSignedIn'>>(),
-  signOut: createAction('USER/SIGN OUT')()
+  signIn: createAction('USER/SIGN IN')<UserInfo>(),
+  signOut: createAction('USER/SIGN OUT')(),
+  updateUser: createAction('USER/UPDATE')<Partial<UserInfo>>()
 };
 export const userFsa = fsa;
 
@@ -24,6 +33,10 @@ export const user = withState(initialState)
   .add(fsa.signOut, state => ({
     ...state,
     isSignedIn: false
+  }))
+  .add(fsa.updateUser, (state, { payload }) => ({
+    ...state,
+    ...payload
   }));
 
 export const getCurrentUser = (): ThunkAction => async dispatch => {
@@ -44,4 +57,18 @@ export const signOut = (): ThunkAction => async dispatch => {
   await signOutUser();
   dispatch(fsa.signOut());
   dispatch(moviesFsa.setWatchlist([]));
+};
+
+export const updateUser = (
+  params: UserUpdateParams
+): ThunkAction => async dispatch => {
+  const { username } = params;
+  try {
+    await updateCurrentUser(params);
+    if (username) {
+      dispatch(userFsa.updateUser({ username }));
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };

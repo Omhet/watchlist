@@ -4,7 +4,7 @@ import {
   MovieResponse,
   MovieResponseItem
 } from '../types/movie';
-import { UserResponse } from '../types/user';
+import { UserResponse, UserUpdateParams } from '../types/user';
 
 export const fetchFeaturedMovies = async ({
   page
@@ -85,6 +85,20 @@ export const addMovieToWatchlist = async (movie: Movie): Promise<any> => {
 export const removeMovieFromWatchlist = async (id: string): Promise<any> => {
   await fetch(`${process.env.WATCHLIST_API_URL}/me/movies/${id}`, {
     method: 'DELETE',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' }
+  });
+};
+
+export const updateCurrentUser = async (
+  params: UserUpdateParams
+): Promise<any> => {
+  const body = JSON.stringify(params, (_, value) =>
+    value === '' ? undefined : value
+  );
+  await fetch(`${process.env.WATCHLIST_API_URL}/me`, {
+    method: 'PUT',
+    body,
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' }
   });

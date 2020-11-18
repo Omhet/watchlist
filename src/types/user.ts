@@ -8,3 +8,8 @@ export interface User {
 export type UserResponse = Omit<User, 'isSignedIn'> & {
   movies: Movies;
 };
+
+export interface UserUpdateParams {
+  username: string;
+  password: string;
+}
