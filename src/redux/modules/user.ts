@@ -10,6 +10,7 @@ import {
 } from '../../utils/request';
 import { withState } from '../helpers/typesafe-reducer';
 import { ThunkAction } from '../types';
+import { resetSession } from './application';
 import { moviesFsa } from './movies';
 
 type UserInfo = Omit<User, 'isSignedIn'>;
@@ -62,14 +63,9 @@ export const signUp = (
   dispatch(signIn(username, password));
 };
 
-export const resetUser = (): ThunkAction => dispatch => {
-  dispatch(fsa.signOut());
-  dispatch(moviesFsa.setWatchlist([]));
-};
-
 export const signOut = (): ThunkAction => async dispatch => {
   await signOutUser();
-  dispatch(resetUser());
+  dispatch(resetSession());
 };
 
 export const updateUser = (
@@ -88,5 +84,5 @@ export const updateUser = (
 
 export const deleteUser = (): ThunkAction => async dispatch => {
   await deleteCurrentUser();
-  dispatch(resetUser());
+  dispatch(resetSession());
 };
