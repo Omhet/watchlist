@@ -18,6 +18,10 @@ const SignInDialog: FunctionComponent<SignInDialogProps> = ({
     onSignIn(username, password);
   }, [onSignIn, username, password]);
 
+  const handleSignUp = useCallback(() => {
+    onSignUp(username, password);
+  }, [onSignUp, username, password]);
+
   return (
     <Modal>
       <form onSubmit={e => e.preventDefault()} className={style.main}>
@@ -34,6 +38,10 @@ const SignInDialog: FunctionComponent<SignInDialogProps> = ({
           type="password"
         />
         <Button onClick={handleSignIn}>Sign In</Button>
+        <div>
+          Or <Button onClick={handleSignUp}>create an account</Button> if you do
+          not have one yet
+        </div>
       </form>
     </Modal>
   );

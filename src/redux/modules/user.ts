@@ -5,6 +5,7 @@ import {
   fetchCurrentUser,
   signInUser,
   signOutUser,
+  signUpUser,
   updateCurrentUser
 } from '../../utils/request';
 import { withState } from '../helpers/typesafe-reducer';
@@ -51,6 +52,14 @@ export const signIn = (
 ): ThunkAction => async dispatch => {
   await signInUser(username, password);
   dispatch(getCurrentUser());
+};
+
+export const signUp = (
+  username: string,
+  password: string
+): ThunkAction => async dispatch => {
+  await signUpUser(username, password);
+  dispatch(signIn(username, password));
 };
 
 export const resetUser = (): ThunkAction => dispatch => {

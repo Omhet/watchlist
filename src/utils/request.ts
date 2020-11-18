@@ -64,6 +64,22 @@ export const signInUser = async (
   });
 };
 
+export const signUpUser = async (
+  username: string,
+  password: string
+): Promise<any> => {
+  const body = JSON.stringify({
+    username,
+    password
+  });
+  await fetch(`${process.env.WATCHLIST_API_URL}/auth/register`, {
+    method: 'POST',
+    body,
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' }
+  });
+};
+
 export const signOutUser = async (): Promise<any> => {
   await fetch(`${process.env.WATCHLIST_API_URL}/auth/logout`, {
     method: 'POST',
