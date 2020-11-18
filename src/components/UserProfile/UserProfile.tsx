@@ -12,9 +12,14 @@ import styles from './style.scss';
 interface Props {
   onMount(): void;
   onSave(params: UserUpdateParams): void;
+  onAccountDelete(): void;
 }
 
-const UserProfile: FunctionComponent<Props> = ({ onMount, onSave }) => {
+const UserProfile: FunctionComponent<Props> = ({
+  onMount,
+  onSave,
+  onAccountDelete
+}) => {
   useEffect(() => {
     onMount();
   });
@@ -45,7 +50,9 @@ const UserProfile: FunctionComponent<Props> = ({ onMount, onSave }) => {
         />
         <Button onClick={handleSave}>Save</Button>
       </form>
-      <Button className={styles.deleteAccountButton}>Delete account</Button>
+      <Button onClick={onAccountDelete} className={styles.deleteAccountButton}>
+        Delete account
+      </Button>
     </div>
   );
 };

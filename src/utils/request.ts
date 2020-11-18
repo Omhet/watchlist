@@ -103,3 +103,11 @@ export const updateCurrentUser = async (
     headers: { 'Content-Type': 'application/json' }
   });
 };
+
+export const deleteCurrentUser = async (): Promise<any> => {
+  await fetch(`${process.env.WATCHLIST_API_URL}/me`, {
+    method: 'DELETE',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' }
+  });
+};

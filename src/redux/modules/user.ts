@@ -1,13 +1,13 @@
 import { createAction } from 'typesafe-actions';
 import { User, UserUpdateParams } from '../../types/user';
 import {
+  deleteCurrentUser,
   fetchCurrentUser,
   signInUser,
   signOutUser,
   updateCurrentUser
 } from '../../utils/request';
 import { withState } from '../helpers/typesafe-reducer';
-import { getUserName } from '../selectors/user';
 import { ThunkAction } from '../types';
 import { moviesFsa } from './movies';
 
@@ -53,10 +53,14 @@ export const signIn = (
   dispatch(getCurrentUser());
 };
 
-export const signOut = (): ThunkAction => async dispatch => {
-  await signOutUser();
+export const resetUser = (): ThunkAction => dispatch => {
   dispatch(fsa.signOut());
   dispatch(moviesFsa.setWatchlist([]));
+};
+
+export const signOut = (): ThunkAction => async dispatch => {
+  await signOutUser();
+  dispatch(resetUser());
 };
 
 export const updateUser = (
@@ -71,4 +75,9 @@ export const updateUser = (
   } catch (error) {
     console.error(error);
   }
+};
+
+export const deleteUser = (): ThunkAction => async dispatch => {
+  await deleteCurrentUser();
+  dispatch(resetUser());
 };
