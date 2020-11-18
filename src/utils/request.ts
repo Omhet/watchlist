@@ -72,12 +72,15 @@ export const signUpUser = async (
     username,
     password
   });
-  await fetch(`${process.env.WATCHLIST_API_URL}/auth/register`, {
+  const res = await fetch(`${process.env.WATCHLIST_API_URL}/auth/register`, {
     method: 'POST',
     body,
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' }
   });
+  if (res.status >= 400) {
+    throw new Error('Register failed');
+  }
 };
 
 export const signOutUser = async (): Promise<any> => {
