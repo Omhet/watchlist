@@ -92,19 +92,18 @@ const MoviePreview: FunctionComponent<Props> = ({
           </div>
         )}
       </div>
-      <Button onClick={handleWatchlistClick}>
-        {isLoading ? (
-          'Loading'
-        ) : (
-          <div
-            className={classnames(styles.watchlistButton, {
-              [styles.m]: size === 'm'
-            })}
-          >
-            {ButtonIcon}
-            Watchlist
-          </div>
-        )}
+      <Button
+        variant="primary"
+        showLoader={isLoading}
+        onClick={handleWatchlistClick}
+        className={classnames(styles.watchlistButton, {
+          [styles.m]: size === 'm'
+        })}
+      >
+        <>
+          {ButtonIcon}
+          Watchlist
+        </>
       </Button>
     </div>
   );

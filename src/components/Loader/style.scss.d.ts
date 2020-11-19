@@ -1,8 +1,7 @@
 declare namespace StyleScssNamespace {
   export interface IStyleScss {
+    'lds-dual-ring': string;
     main: string;
-    primary: string;
-    secondary: string;
   }
 }
 

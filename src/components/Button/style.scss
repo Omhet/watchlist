@@ -1,9 +1,30 @@
 .main {
-    width: 100%;
-    background-color: transparent;
-    color: $mainColor;
     display: flex;
     padding: 0;
-    border: none;
     cursor: pointer;
+    border: none;
+}
+
+.main:focus {
+    outline: 2px solid $auxAccent;
+}
+
+.secondary {
+    background-color: transparent;
+    color: $mainColor;
+}
+
+.primary {
+    padding: 1em 0;
+    background-color: $mainBackS;
+    color: $auxAccent;
+    font-weight: bold;
+
+    & svg {
+        margin-right: 8px;
+    }
+}
+
+.primary:hover {
+    background-color: $mainBackT;
 }
