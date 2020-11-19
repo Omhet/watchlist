@@ -48,7 +48,9 @@ const UserProfile: FunctionComponent<Props> = ({
           placeholder="New password"
           type="password"
         />
-        <Button onClick={handleSave}>Save</Button>
+        <Button variant="primary" onClick={handleSave}>
+          Save
+        </Button>
       </form>
       <Button onClick={onAccountDelete} className={styles.deleteAccountButton}>
         Delete account
