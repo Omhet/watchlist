@@ -10,11 +10,14 @@
     max-width: 256px;
 
     & > * + * {
-        margin-top: 16px;
+        margin-top: 24px;
+    }
+    & :last-child {
+        margin-top: 32px;
     }
 }
 
 .deleteAccountButton {
-    margin-top: 40px;
+    margin-top: 64px;
     color: $errorColor;
 }
