@@ -1,5 +1,24 @@
 .main {
+    padding: 32px 48px 24px 48px;
     background-color: $mainBackS;
     border-radius: 8px;
     margin: auto;
+}
+
+.content {
+    margin-top: 24px;
+    color: $mainColorS;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.deleteButton {
+    margin-left: 24px;
+    padding: 1em;
+    color: $errorColor;
 }

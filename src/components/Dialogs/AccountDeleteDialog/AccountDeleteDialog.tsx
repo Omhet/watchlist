@@ -15,9 +15,19 @@ const AccountDeleteDialog: FunctionComponent<AccountDeleteDialogProps> = ({
     <Modal>
       <div className={style.main}>
         <h2>Are you sure you want to delete your account?</h2>
-        <div>All the data associated with you will be deleted permanently.</div>
-        <Button onClick={onCancel}>Cancel</Button>
-        <Button onClick={onDelete}>Delete</Button>
+        <div className={style.content}>
+          All the data associated with you will be deleted permanently.
+        </div>
+        <div className={style.buttons}>
+          <Button onClick={onCancel}>Cancel</Button>
+          <Button
+            className={style.deleteButton}
+            variant="primary"
+            onClick={onDelete}
+          >
+            Delete
+          </Button>
+        </div>
       </div>
     </Modal>
   );
