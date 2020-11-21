@@ -42,6 +42,7 @@ const SignInDialog: FunctionComponent<SignInDialogProps> = ({
             value={username}
             placeholder="Username"
             type="text"
+            autoFocus
           />
           <input
             onChange={e => setPassword(e.target.value)}
