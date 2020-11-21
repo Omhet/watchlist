@@ -21,10 +21,11 @@
     flex-direction: column;
     min-width: 100%;
     max-width: 200%;
-    background-color: $overlay;
+    background-color: $mainBackS;
 
     & > * {
-        padding: 12px 4px;
+        padding: 16px 12px;
+        padding-right: 24px;
     }
 
     & > * + * {
