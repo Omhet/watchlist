@@ -52,7 +52,7 @@ const SignInDialog: FunctionComponent<SignInDialogProps> = ({
           {willCreateAccount && (
             <input
               onChange={e => setVerifiedPassword(e.target.value)}
-              value={password}
+              value={verifiedPassword}
               placeholder="Verify password"
               type="password"
             />

@@ -19,6 +19,10 @@ body * {
     box-sizing: border-box;
 }
 
+*:focus {
+    outline: 2px solid $auxAccent;
+}
+
 body, h1, h2, h3, h4, h5 {
     margin: 0;
 }
@@ -33,4 +37,12 @@ a {
 
 a:visited {
     color: currentColor;
+}
+
+input {
+    color: $mainColor;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $mainColorS;
+    padding-bottom: 8px;
 }
