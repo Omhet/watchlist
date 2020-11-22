@@ -1,8 +1,14 @@
+import { Formik } from 'formik';
 import React, { FunctionComponent, useCallback, useState } from 'react';
 import Button from '../../Button/Button';
 import Modal from '../../Modal/Modal';
 import style from './style.scss';
 
+interface UserSignInErrors {
+  username?: string;
+  password?: string;
+  repeatedPassword?: string;
+}
 interface SignInDialogProps {
   onSignIn(username: string, password: string): void;
   onSignUp(username: string, password: string): void;
@@ -17,65 +23,103 @@ const SignInDialog: FunctionComponent<SignInDialogProps> = ({
     setWillCreateAccount(!willCreateAccount);
   }, [setWillCreateAccount, willCreateAccount]);
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [verifiedPassword, setVerifiedPassword] = useState('');
-
-  const handleSignIn = useCallback(() => {
-    onSignIn(username, password);
-  }, [onSignIn, username, password]);
-
-  const handleSignUp = useCallback(() => {
-    if (verifiedPassword !== password) {
-      return;
-    }
-
-    onSignUp(username, password);
-  }, [onSignUp, username, password, verifiedPassword]);
-
   return (
     <Modal>
       <div className={style.main}>
-        <form className={style.form} onSubmit={e => e.preventDefault()}>
-          <input
-            onChange={e => setUsername(e.target.value)}
-            value={username}
-            placeholder="Username"
-            type="text"
-            autoFocus
-          />
-          <input
-            onChange={e => setPassword(e.target.value)}
-            value={password}
-            placeholder="Password"
-            type="password"
-          />
-          {willCreateAccount && (
-            <input
-              onChange={e => setVerifiedPassword(e.target.value)}
-              value={verifiedPassword}
-              placeholder="Verify password"
-              type="password"
-            />
+        <Formik
+          initialValues={{ username: '', password: '', repeatedPassword: '' }}
+          validate={({ username, password, repeatedPassword }) => {
+            const errors: UserSignInErrors = {};
+            if (!username) {
+              errors.username = 'Username is required';
+            } else if (!/^\w+$/i.test(username)) {
+              errors.username =
+                'You can use only alphanumerical characters in username';
+            } else if (username.length < 3) {
+              errors.username = 'Username has to be at least 3 characters long';
+            }
+
+            if (!password) {
+              errors.password = 'Password is required';
+            } else if (password.length < 4) {
+              errors.password = 'Password has to be at least 4 characters long';
+            }
+
+            if (willCreateAccount) {
+              if (password !== repeatedPassword) {
+                errors.repeatedPassword = 'Passwords do not match';
+              }
+            }
+
+            return errors;
+          }}
+          onSubmit={({ username, password }) => {
+            willCreateAccount
+              ? onSignUp(username, password)
+              : onSignIn(username, password);
+          }}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit
+          }) => (
+            <form className={style.form} onSubmit={handleSubmit}>
+              <input
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.username}
+                placeholder="Username"
+                type="text"
+                name="username"
+              />
+              <div className={style.error}>
+                {errors.username && touched.username && errors.username}
+              </div>
+              <input
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+                placeholder="Password"
+                name="password"
+                type="password"
+              />
+              <div className={style.error}>
+                {errors.password && touched.password && errors.password}
+              </div>
+
+              {willCreateAccount && (
+                <>
+                  <input
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.repeatedPassword}
+                    placeholder="Verify password"
+                    name="repeatedPassword"
+                    type="password"
+                  />
+                  <div className={style.error}>
+                    {errors.repeatedPassword &&
+                      touched.repeatedPassword &&
+                      errors.repeatedPassword}
+                  </div>
+                </>
+              )}
+              {willCreateAccount ? (
+                <Button className={style.submitButton} variant="primary">
+                  Create account
+                </Button>
+              ) : (
+                <Button className={style.submitButton} variant="primary">
+                  Sign In
+                </Button>
+              )}
+            </form>
           )}
-          {willCreateAccount ? (
-            <Button
-              className={style.submitButton}
-              variant="primary"
-              onClick={handleSignUp}
-            >
-              Create account
-            </Button>
-          ) : (
-            <Button
-              className={style.submitButton}
-              variant="primary"
-              onClick={handleSignIn}
-            >
-              Sign In
-            </Button>
-          )}
-        </form>
+        </Formik>
         <Button
           className={style.methodChangeButton}
           onClick={handleMethodChange}

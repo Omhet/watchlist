@@ -1,5 +1,5 @@
 .main {
-  width: 420px;
+  width: 530px;
   display: flex;
   flex-direction: column;
   padding: 80px 64px;
@@ -24,4 +24,10 @@
 
 .methodChangeButton {
   margin-top: 48px;
+}
+
+.error {
+  font-size: 14px;
+  color: $errorColor;
+  margin-top: 12px;
 }

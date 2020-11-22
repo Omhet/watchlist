@@ -1,5 +1,6 @@
 declare namespace StyleScssNamespace {
   export interface IStyleScss {
+    error: string;
     form: string;
     main: string;
     methodChangeButton: string;
