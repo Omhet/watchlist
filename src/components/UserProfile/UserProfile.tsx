@@ -30,23 +30,26 @@ const UserProfile: FunctionComponent<Props> = ({
         initialValues={{ username: '', password: '', repeatedPassword: '' }}
         validate={({ username, password, repeatedPassword }) => {
           const errors: UserSignInErrors = {};
-          if (!username) {
-            errors.username = 'Username is required';
-          } else if (!/^\w+$/i.test(username)) {
-            errors.username =
-              'You can use only alphanumerical characters in username';
-          } else if (username.length < 3) {
-            errors.username = 'Username has to be at least 3 characters long';
+          if (willChangeName) {
+            if (!username) {
+              errors.username = 'Username is required';
+            } else if (!/^\w+$/i.test(username)) {
+              errors.username =
+                'You can use only alphanumerical characters in username';
+            } else if (username.length < 3) {
+              errors.username = 'Username has to be at least 3 characters long';
+            }
           }
 
-          if (!password) {
-            errors.password = 'Password is required';
-          } else if (password.length < 4) {
-            errors.password = 'Password has to be at least 4 characters long';
-          }
-
-          if (password !== repeatedPassword) {
-            errors.repeatedPassword = 'Passwords do not match';
+          if (willChangePassword) {
+            if (!password) {
+              errors.password = 'Password is required';
+            } else if (password.length < 4) {
+              errors.password = 'Password has to be at least 4 characters long';
+            }
+            if (password !== repeatedPassword) {
+              errors.repeatedPassword = 'Passwords do not match';
+            }
           }
 
           return errors;
