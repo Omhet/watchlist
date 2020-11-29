@@ -4,7 +4,7 @@
   flex-direction: column;
   padding: 80px 64px;
   background-color: $mainBackS;
-  border-radius: 8px;
+  border-radius: 0 8px 8px 0;
   margin: auto;
   border-left: 1px solid $auxAccent;
 }
@@ -29,7 +29,6 @@
 
 .method {
   color: $auxAccent;
-
 }
 
 .error {

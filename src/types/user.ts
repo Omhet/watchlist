@@ -13,3 +13,9 @@ export interface UserUpdateParams {
   username: string;
   password: string;
 }
+
+export interface UserSignInErrors {
+  username?: string;
+  password?: string;
+  repeatedPassword?: string;
+}

@@ -1,14 +1,9 @@
 import { Formik } from 'formik';
 import React, { FunctionComponent, useCallback, useState } from 'react';
+import { UserSignInErrors } from '../../../types/user';
 import Button from '../../Button/Button';
 import Modal from '../../Modal/Modal';
 import style from './style.scss';
-
-interface UserSignInErrors {
-  username?: string;
-  password?: string;
-  repeatedPassword?: string;
-}
 interface SignInDialogProps {
   onSignIn(username: string, password: string): void;
   onSignUp(username: string, password: string): void;
@@ -124,7 +119,7 @@ const SignInDialog: FunctionComponent<SignInDialogProps> = ({
           className={style.methodChangeButton}
           onClick={handleMethodChange}
         >
-          Or &nbsp;{' '}
+          Or &nbsp;
           <span className={style.method}>
             {willCreateAccount ? 'sign in' : 'create account'}
           </span>

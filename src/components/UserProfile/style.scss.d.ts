@@ -1,6 +1,7 @@
 declare namespace StyleScssNamespace {
   export interface IStyleScss {
     deleteAccountButton: string;
+    error: string;
     main: string;
     userInfo: string;
   }
