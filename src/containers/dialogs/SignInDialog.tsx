@@ -2,7 +2,14 @@ import { connect } from 'react-redux';
 import SignInDialog from '../../components/Dialogs/SignInDialog/SignInDialog';
 import { dialogFsa } from '../../redux/modules/dialog';
 import { signIn, signUp } from '../../redux/modules/user';
-import { Dispatch } from '../../redux/types';
+import { Dispatch, RootState } from '../../redux/types';
+import { UserError } from '../../types/user';
+
+const mapState = (state: RootState) => {
+  return {
+    userExists: state.user.error === UserError.UserExists
+  };
+};
 
 const mapDispatch = (dispatch: Dispatch) => ({
   onSignIn: (username: string, password: string) => {
@@ -11,8 +18,8 @@ const mapDispatch = (dispatch: Dispatch) => ({
   },
   onSignUp: (username: string, password: string) => {
     dispatch(signUp(username, password));
-    dispatch(dialogFsa.closeDialog());
+    // dispatch(dialogFsa.closeDialog());
   }
 });
 
-export default connect(null, mapDispatch)(SignInDialog);
+export default connect(mapState, mapDispatch)(SignInDialog);

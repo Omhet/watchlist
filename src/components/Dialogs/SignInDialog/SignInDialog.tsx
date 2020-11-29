@@ -5,12 +5,14 @@ import Button from '../../Button/Button';
 import Modal from '../../Modal/Modal';
 import style from './style.scss';
 interface SignInDialogProps {
+  userExists: boolean;
   onSignIn(username: string, password: string): void;
   onSignUp(username: string, password: string): void;
 }
 const SignInDialog: FunctionComponent<SignInDialogProps> = ({
   onSignIn,
-  onSignUp
+  onSignUp,
+  userExists
 }) => {
   const [willCreateAccount, setWillCreateAccount] = useState(false);
 
@@ -111,6 +113,11 @@ const SignInDialog: FunctionComponent<SignInDialogProps> = ({
                 <Button className={style.submitButton} variant="primary">
                   Sign In
                 </Button>
+              )}
+              {userExists && (
+                <div className={style.error}>
+                  User with such name already exists
+                </div>
               )}
             </form>
           )}

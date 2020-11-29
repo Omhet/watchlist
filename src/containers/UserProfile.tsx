@@ -3,9 +3,15 @@ import UserProfile from '../components/UserProfile/UserProfile';
 import { openSignInIfNeeded } from '../redux/modules/application';
 import { dialogFsa } from '../redux/modules/dialog';
 import { updateUser } from '../redux/modules/user';
-import { Dispatch } from '../redux/types';
+import { Dispatch, RootState } from '../redux/types';
 import { DialogId } from '../types/dialog';
-import { UserUpdateParams } from '../types/user';
+import { UserError, UserUpdateParams } from '../types/user';
+
+const mapState = (state: RootState) => {
+  return {
+    userExists: state.user.error === UserError.UserExists
+  };
+};
 
 const mapDispatch = (dispatch: Dispatch) => ({
   onMount: () => {
@@ -19,4 +25,4 @@ const mapDispatch = (dispatch: Dispatch) => ({
   }
 });
 
-export default connect(null, mapDispatch)(UserProfile);
+export default connect(mapState, mapDispatch)(UserProfile);

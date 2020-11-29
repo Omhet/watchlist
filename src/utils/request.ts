@@ -78,6 +78,10 @@ export const signUpUser = async (
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' }
   });
+  const { error } = await res.json();
+  if (error) {
+    throw new Error(error);
+  }
   if (res.status >= 400) {
     throw new Error('Register failed');
   }

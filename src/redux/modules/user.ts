@@ -1,5 +1,5 @@
 import { createAction } from 'typesafe-actions';
-import { User, UserUpdateParams } from '../../types/user';
+import { User, UserError, UserUpdateParams } from '../../types/user';
 import {
   deleteCurrentUser,
   fetchCurrentUser,
@@ -18,11 +18,16 @@ type UserInfo = Omit<User, 'isSignedIn'>;
 export const fsa = {
   signIn: createAction('USER/SIGN IN')<UserInfo>(),
   signOut: createAction('USER/SIGN OUT')(),
+  setError: createAction('USER/SET ERROR')<UserError>(),
   updateUser: createAction('USER/UPDATE')<Partial<UserInfo>>()
 };
 export const userFsa = fsa;
 
-const initialState: User = {
+type State = User & {
+  error?: UserError;
+};
+
+const initialState: State = {
   isSignedIn: false
 };
 
@@ -35,6 +40,10 @@ export const user = withState(initialState)
   .add(fsa.signOut, state => ({
     ...state,
     isSignedIn: false
+  }))
+  .add(fsa.setError, (state, { payload }) => ({
+    ...state,
+    error: payload
   }))
   .add(fsa.updateUser, (state, { payload }) => ({
     ...state,
@@ -59,8 +68,12 @@ export const signUp = (
   username: string,
   password: string
 ): ThunkAction => async dispatch => {
-  await signUpUser(username, password);
-  dispatch(signIn(username, password));
+  try {
+    await signUpUser(username, password);
+    dispatch(signIn(username, password));
+  } catch (error) {
+    dispatch(userFsa.setError(error.message));
+  }
 };
 
 export const signOut = (): ThunkAction => async dispatch => {

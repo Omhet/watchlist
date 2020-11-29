@@ -6,6 +6,7 @@ import Title from '../Title/Title';
 import styles from './style.scss';
 
 interface Props {
+  userExists: boolean;
   onMount(): void;
   onSave(params: UserUpdateParams): void;
   onAccountDelete(): void;
@@ -14,7 +15,8 @@ interface Props {
 const UserProfile: FunctionComponent<Props> = ({
   onMount,
   onSave,
-  onAccountDelete
+  onAccountDelete,
+  userExists
 }) => {
   useEffect(() => {
     onMount();
@@ -50,6 +52,10 @@ const UserProfile: FunctionComponent<Props> = ({
             if (password !== repeatedPassword) {
               errors.repeatedPassword = 'Passwords do not match';
             }
+          }
+
+          if (userExists) {
+            errors.general = 'User with such name already exists';
           }
 
           return errors;
