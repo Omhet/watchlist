@@ -6,6 +6,7 @@
   background-color: $mainBackS;
   border-radius: 8px;
   margin: auto;
+  border-left: 1px solid $auxAccent;
 }
 
 .form {
@@ -19,15 +20,21 @@
 
 .submitButton {
   margin-top: 32px;
-  border-left: 1px solid $auxAccent;
+  border-bottom: 1px solid $auxAccent;
 }
 
 .methodChangeButton {
-  margin-top: 48px;
+  margin-top: 80px;
+}
+
+.method {
+  color: $auxAccent;
+
 }
 
 .error {
   font-size: 14px;
   color: $errorColor;
   margin-top: 12px;
+  padding-left: 8px;
 }

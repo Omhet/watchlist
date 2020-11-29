@@ -3,6 +3,7 @@ declare namespace StyleScssNamespace {
     error: string;
     form: string;
     main: string;
+    method: string;
     methodChangeButton: string;
     submitButton: string;
   }

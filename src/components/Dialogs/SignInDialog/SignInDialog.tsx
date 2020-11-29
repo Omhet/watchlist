@@ -124,7 +124,10 @@ const SignInDialog: FunctionComponent<SignInDialogProps> = ({
           className={style.methodChangeButton}
           onClick={handleMethodChange}
         >
-          Or {willCreateAccount ? 'sign in' : 'create account'}
+          Or &nbsp;{' '}
+          <span className={style.method}>
+            {willCreateAccount ? 'sign in' : 'create account'}
+          </span>
         </Button>
       </div>
     </Modal>
