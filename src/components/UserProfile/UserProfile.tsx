@@ -54,10 +54,6 @@ const UserProfile: FunctionComponent<Props> = ({
             }
           }
 
-          if (userExists) {
-            errors.general = 'User with such name already exists';
-          }
-
           return errors;
         }}
         onSubmit={({ username, password }) => {
@@ -132,6 +128,11 @@ const UserProfile: FunctionComponent<Props> = ({
               <Button variant="primary" onClick={() => handleSubmit()}>
                 Save
               </Button>
+            )}
+            {userExists && (
+              <div className={styles.error}>
+                User with such name already exists
+              </div>
             )}
           </form>
         )}

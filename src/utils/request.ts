@@ -119,12 +119,16 @@ export const updateCurrentUser = async (
   const body = JSON.stringify(params, (_, value) =>
     value === '' ? undefined : value
   );
-  await fetch(`${process.env.WATCHLIST_API_URL}/me`, {
+  const res = await fetch(`${process.env.WATCHLIST_API_URL}/me`, {
     method: 'PUT',
     body,
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' }
   });
+  const { error } = await res.json();
+  if (error) {
+    throw new Error(error);
+  }
 };
 
 export const deleteCurrentUser = async (): Promise<any> => {

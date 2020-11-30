@@ -91,6 +91,7 @@ export const updateUser = (
       dispatch(userFsa.updateUser({ username }));
     }
   } catch (error) {
+    dispatch(userFsa.setError(error.message));
     console.error(error);
   }
 };
