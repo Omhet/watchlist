@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import Button from '../../Button/Button';
-import Modal from '../../Modal/Modal';
 import Dialog from '../Dialog/Dialog';
 import style from './style.scss';
 

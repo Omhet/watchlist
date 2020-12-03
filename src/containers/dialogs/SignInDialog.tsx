@@ -19,6 +19,9 @@ const mapDispatch = (dispatch: Dispatch) => ({
   onSignUp: (username: string, password: string) => {
     dispatch(signUp(username, password));
     // dispatch(dialogFsa.closeDialog());
+  },
+  onClose: () => {
+    dispatch(dialogFsa.closeDialog());
   }
 });
 

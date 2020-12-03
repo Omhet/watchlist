@@ -2,7 +2,6 @@ import { Formik } from 'formik';
 import React, { FunctionComponent, useCallback, useState } from 'react';
 import { UserSignInErrors } from '../../../types/user';
 import Button from '../../Button/Button';
-import Modal from '../../Modal/Modal';
 import Dialog from '../Dialog/Dialog';
 import style from './style.scss';
 interface SignInDialogProps {

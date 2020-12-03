@@ -1,6 +1,6 @@
-import React, { FunctionComponent, useCallback, useState } from 'react';
-import Button from '../../Button/Button';
+import React, { FunctionComponent } from 'react';
 import CrossIcon from '../../../icons/Cross.svg';
+import Button from '../../Button/Button';
 import Modal from '../../Modal/Modal';
 import style from './style.scss';
 interface DialogProps {
