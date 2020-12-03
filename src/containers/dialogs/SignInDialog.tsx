@@ -14,11 +14,9 @@ const mapState = (state: RootState) => {
 const mapDispatch = (dispatch: Dispatch) => ({
   onSignIn: (username: string, password: string) => {
     dispatch(signIn(username, password));
-    dispatch(dialogFsa.closeDialog());
   },
   onSignUp: (username: string, password: string) => {
     dispatch(signUp(username, password));
-    // dispatch(dialogFsa.closeDialog());
   },
   onClose: () => {
     dispatch(dialogFsa.closeDialog());

@@ -11,6 +11,7 @@ import {
 import { withState } from '../helpers/typesafe-reducer';
 import { ThunkAction } from '../types';
 import { resetSession } from './application';
+import { dialogFsa } from './dialog';
 import { moviesFsa } from './movies';
 
 type UserInfo = Omit<User, 'isSignedIn'>;
@@ -61,6 +62,7 @@ export const signIn = (
   password: string
 ): ThunkAction => async dispatch => {
   await signInUser(username, password);
+  dispatch(dialogFsa.closeDialog());
   dispatch(getCurrentUser());
 };
 
