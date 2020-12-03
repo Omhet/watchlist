@@ -6,6 +6,7 @@ import Dialog from '../Dialog/Dialog';
 import style from './style.scss';
 interface SignInDialogProps {
   userExists: boolean;
+  areCredsInvalid: boolean;
   onClose(): void;
   onSignIn(username: string, password: string): void;
   onSignUp(username: string, password: string): void;
@@ -14,7 +15,8 @@ const SignInDialog: FunctionComponent<SignInDialogProps> = ({
   onSignIn,
   onSignUp,
   onClose,
-  userExists
+  userExists,
+  areCredsInvalid
 }) => {
   const [willCreateAccount, setWillCreateAccount] = useState(false);
 
@@ -119,6 +121,11 @@ const SignInDialog: FunctionComponent<SignInDialogProps> = ({
               {userExists && (
                 <div className={style.error}>
                   User with such name already exists
+                </div>
+              )}
+              {areCredsInvalid && (
+                <div className={style.error}>
+                  The username or password are incorrect
                 </div>
               )}
             </form>

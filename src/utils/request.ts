@@ -56,12 +56,19 @@ export const signInUser = async (
     username,
     password
   });
-  await fetch(`${process.env.WATCHLIST_API_URL}/auth/login`, {
+  const res = await fetch(`${process.env.WATCHLIST_API_URL}/auth/login`, {
     method: 'POST',
     body,
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' }
   });
+  const { error } = await res.json();
+  if (error) {
+    throw new Error(error);
+  }
+  if (res.status >= 400) {
+    throw new Error('Sign in failed');
+  }
 };
 
 export const signUpUser = async (

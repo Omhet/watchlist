@@ -61,9 +61,15 @@ export const signIn = (
   username: string,
   password: string
 ): ThunkAction => async dispatch => {
-  await signInUser(username, password);
-  dispatch(dialogFsa.closeDialog());
-  dispatch(getCurrentUser());
+  try {
+    await signInUser(username, password);
+    console.log('sign in done');
+
+    dispatch(dialogFsa.closeDialog());
+    dispatch(getCurrentUser());
+  } catch (error) {
+    dispatch(userFsa.setError(error.message));
+  }
 };
 
 export const signUp = (

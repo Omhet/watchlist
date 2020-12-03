@@ -10,7 +10,8 @@ export type UserResponse = Omit<User, 'isSignedIn'> & {
 };
 
 export enum UserError {
-  UserExists = 'user_exists'
+  UserExists = 'user_exists',
+  InvalidCreds = 'invalid_creds'
 }
 export interface UserUpdateParams {
   username: string;

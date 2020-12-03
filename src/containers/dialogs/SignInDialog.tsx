@@ -7,7 +7,8 @@ import { UserError } from '../../types/user';
 
 const mapState = (state: RootState) => {
   return {
-    userExists: state.user.error === UserError.UserExists
+    userExists: state.user.error === UserError.UserExists,
+    areCredsInvalid: state.user.error === UserError.InvalidCreds
   };
 };
 
