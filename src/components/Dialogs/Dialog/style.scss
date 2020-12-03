@@ -1,0 +1,18 @@
+.main {
+  position: relative;
+  margin: auto;
+}
+
+.closeButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.closeButtonIcon {
+  fill: $mainColorS;
+
+  &:hover {
+  fill: $mainColor;
+  }
+}

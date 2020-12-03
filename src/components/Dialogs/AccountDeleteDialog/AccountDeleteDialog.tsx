@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import Button from '../../Button/Button';
 import Modal from '../../Modal/Modal';
+import Dialog from '../Dialog/Dialog';
 import style from './style.scss';
 
 interface AccountDeleteDialogProps {
@@ -12,7 +13,7 @@ const AccountDeleteDialog: FunctionComponent<AccountDeleteDialogProps> = ({
   onCancel
 }) => {
   return (
-    <Modal>
+    <Dialog onClose={onCancel}>
       <div className={style.main}>
         <h2>Are you sure you want to delete your account?</h2>
         <div className={style.content}>
@@ -29,7 +30,7 @@ const AccountDeleteDialog: FunctionComponent<AccountDeleteDialogProps> = ({
           </Button>
         </div>
       </div>
-    </Modal>
+    </Dialog>
   );
 };
 
