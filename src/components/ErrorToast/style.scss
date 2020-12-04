@@ -1,7 +1,24 @@
 .main {
-  background-color: white;
-  color: $errorColor;
-  position: absolute;
+  background-color: $errorColorS;
+  padding: 24px 48px 24px 24px;
+  color: $mainColor;
+  position: fixed;
   top: 128px;
   right: 64px;
+  border-left: 4px solid $errorColor;
+  z-index: 10;
+}
+
+.closeButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.closeButtonIcon {
+  fill: $mainColorS;
+
+  &:hover {
+    fill: $mainColor;
+  }
 }

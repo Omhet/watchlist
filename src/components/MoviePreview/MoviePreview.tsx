@@ -18,6 +18,7 @@ import { toggleMovieInWatchlistLocally } from '../../redux/modules/movies';
 import { dialogFsa } from '../../redux/modules/dialog';
 import { DialogId } from '../../types/dialog';
 import { isMovieInWatchlist } from '../../redux/selectors/movies';
+import { appFsa } from '../../redux/modules/application';
 
 interface Props {
   movie: Movie;
@@ -56,6 +57,7 @@ const MoviePreview: FunctionComponent<Props> = ({
       }
       dispatch(toggleMovieInWatchlistLocally(movie));
     } catch (error) {
+      dispatch(appFsa.setError(Error('Failed to change watchlist')));
       console.error(error);
     }
     setIsLoading(false);
