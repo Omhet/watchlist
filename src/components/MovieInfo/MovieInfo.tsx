@@ -68,7 +68,9 @@ const MovieInfo: FunctionComponent<Props> = ({
         </div>
       </div>
       <div className={styles.backdrop}>
-        <img className={styles.backdropPoster} src={backdropPoster} />
+        {backdropPoster && (
+          <img className={styles.backdropPoster} src={backdropPoster} />
+        )}
         <div className={styles.overlay}></div>
       </div>
     </div>
