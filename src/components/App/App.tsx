@@ -8,13 +8,19 @@ import MovieOverview from '../../containers/MovieOverviewContainer';
 import PageHeader from '../../containers/PageHeader';
 import Dialogs from '../../containers/dialogs/Dialogs';
 import UserProfile from '../../containers/UserProfile';
+import ErrorToast from '../../containers/ErrorToast';
 
 export interface AppProps {
   isUserSignedIn: boolean;
+  appError?: Error;
   onStart(): void;
 }
 
-const App: FunctionComponent<AppProps> = ({ onStart, isUserSignedIn }) => {
+const App: FunctionComponent<AppProps> = ({
+  onStart,
+  isUserSignedIn,
+  appError
+}) => {
   useEffect(() => {
     onStart();
   }, []);
@@ -22,6 +28,8 @@ const App: FunctionComponent<AppProps> = ({ onStart, isUserSignedIn }) => {
   return (
     <div className={styles.main}>
       <Dialogs />
+
+      {appError && <ErrorToast />}
 
       <PageHeader />
 

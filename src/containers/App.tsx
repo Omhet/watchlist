@@ -5,7 +5,8 @@ import { Dispatch, RootState } from '../redux/types';
 
 const mapState = (state: RootState) => {
   return {
-    isUserSignedIn: state.user.isSignedIn
+    isUserSignedIn: state.user.isSignedIn,
+    appError: state.app.error
   };
 };
 
