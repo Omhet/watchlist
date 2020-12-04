@@ -57,7 +57,11 @@ const MoviePreview: FunctionComponent<Props> = ({
       }
       dispatch(toggleMovieInWatchlistLocally(movie));
     } catch (error) {
-      dispatch(appFsa.setError(Error('Failed to change watchlist')));
+      dispatch(
+        appFsa.setError(
+          Error('Failed to change watchlist. Try to reload a page')
+        )
+      );
       console.error(error);
     }
     setIsLoading(false);
