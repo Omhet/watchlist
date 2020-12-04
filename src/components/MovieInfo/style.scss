@@ -83,7 +83,7 @@
 }
 
 .preview {
-    min-width: 256px;
+    max-width: 256px;
 
     @media (max-width: $mobile) {
         margin-top: 64px;

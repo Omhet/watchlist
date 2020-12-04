@@ -11,7 +11,8 @@ import {
   findMainCreators,
   findTrailer
 } from '../../utils/movie';
-import PersonImagePlaceholder from '../../images/placeholder-person.png';
+import PersonImagePlaceholder from '../../images/person-placeholder.png';
+import PosterImagePlaceholder from '../../images/poster-placeholder.png';
 
 export const isMovieInWatchlist = (state: RootState, id: string) => {
   const { watchlistSet } = state.movies;
@@ -23,7 +24,9 @@ export const getMoviesFromResponse = (response: MovieResponse): Movies => {
     id: String(id),
     rate: vote_average,
     title,
-    poster: `https://image.tmdb.org/t/p/w342${poster_path}`
+    poster: poster_path
+      ? `https://image.tmdb.org/t/p/w342${poster_path}`
+      : PosterImagePlaceholder
   }));
 };
 
@@ -49,7 +52,9 @@ export const getMovieWithInfoFromResponse = (
     id: String(id),
     rate: vote_average,
     title,
-    poster: `https://image.tmdb.org/t/p/w342${poster_path}`,
+    poster: poster_path
+      ? `https://image.tmdb.org/t/p/w342${poster_path}`
+      : PosterImagePlaceholder,
     backdropPoster: backdrop_path
       ? `https://image.tmdb.org/t/p/w1280${backdrop_path}`
       : undefined,
