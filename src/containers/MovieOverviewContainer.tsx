@@ -15,7 +15,11 @@ const MovieOverviewContainer: FunctionComponent<Props> = ({ id }) => {
   }, [id]);
 
   const movie = useSelector((state: RootState) => state.movies.movieOverview);
-  return <MovieOverview movie={movie} />;
+  const isLoading = useSelector(
+    (state: RootState) => state.movies.isMovieOverviewLoading
+  );
+
+  return <MovieOverview movie={movie} isLoading={isLoading} />;
 };
 
 export default MovieOverviewContainer;

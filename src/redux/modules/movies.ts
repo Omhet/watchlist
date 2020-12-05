@@ -23,6 +23,9 @@ export const fsa = {
   setWatchlist: createAction('MOVIES/SET_MOVIES_TO_WATCHLIST')<Movies>(),
   setMoviesLoading: createAction('MOVIES/SET_MOVIES_LOADING')<boolean>(),
   setWatchlistLoading: createAction('MOVIES/SET_WATCHLIST_LOADING')<boolean>(),
+  setMovieOverviewLoading: createAction('MOVIES/SET_MOVIE_OVERVIEW_LOADING')<
+    boolean
+  >(),
   setMoviesToShow: createAction('MOVIES/SET_MOVIES_TO_SHOW')<Movies>(),
   addMoviesToShow: createAction('MOVIES/ADD_MOVIES_TO_SHOW')<Movies>(),
   setMovieToOverview: createAction('MOVIES/SET_MOVIE_TO_SHOW')<MovieWithInfo>(),
@@ -35,6 +38,7 @@ export const moviesFsa = fsa;
 interface State {
   areMoviesLoading: boolean;
   isWatchlistLoading: boolean;
+  isMovieOverviewLoading: boolean;
   toShow: Movies;
   watchlist: Movies;
   watchlistSet: Set<string>;
@@ -45,6 +49,7 @@ interface State {
 const initialState: State = {
   areMoviesLoading: true,
   isWatchlistLoading: true,
+  isMovieOverviewLoading: true,
   toShow: [],
   watchlist: [],
   watchlistSet: new Set(),
@@ -81,6 +86,10 @@ export const movies = withState(initialState)
   .add(fsa.setWatchlistLoading, (state, { payload }) => ({
     ...state,
     isWatchlistLoading: payload
+  }))
+  .add(fsa.setMovieOverviewLoading, (state, { payload }) => ({
+    ...state,
+    isMovieOverviewLoading: payload
   }))
   .add(fsa.setMovieToOverview, (state, { payload }) => ({
     ...state,
@@ -164,11 +173,14 @@ export const setMovieToOverview = (id: string): ThunkAction => async (
   getState
 ) => {
   try {
+    dispatch(fsa.setMovieOverviewLoading(true));
     const movieResult = await fetchMovieInfo({ id });
     const movie = getMovieWithInfoFromResponse(getState(), movieResult);
     dispatch(fsa.setMovieToOverview(movie));
   } catch (error) {
     console.error(error);
+  } finally {
+    dispatch(fsa.setMovieOverviewLoading(false));
   }
 };
 

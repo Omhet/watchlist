@@ -1,6 +1,9 @@
 declare namespace StyleScssNamespace {
   export interface IStyleScss {
     cast: string;
+    loader: string;
+    loaderContainer: string;
+    main: string;
     trailer: string;
   }
 }
