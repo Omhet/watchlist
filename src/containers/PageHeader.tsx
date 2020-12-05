@@ -4,10 +4,12 @@ import { dialogFsa } from '../redux/modules/dialog';
 import { Dispatch, RootState } from '../redux/types';
 import { DialogId } from '../types/dialog';
 
-const mapState = (state: RootState) => {
+const mapState = ({ movies: { isWatchlistLoading }, user }: RootState) => {
   return {
-    showSignInButton: !state.user.isSignedIn,
-    showUserDropdown: state.user.isSignedIn
+    showSignInButton: !user.isSignedIn && !isWatchlistLoading,
+    showUserDropdown: user.isSignedIn && !isWatchlistLoading,
+    showUserLoader: isWatchlistLoading,
+    showWatchlistCounter: user.isSignedIn && !isWatchlistLoading
   };
 };
 

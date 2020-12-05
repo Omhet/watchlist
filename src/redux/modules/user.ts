@@ -52,9 +52,16 @@ export const user = withState(initialState)
   }));
 
 export const getCurrentUser = (): ThunkAction => async dispatch => {
-  const { username, movies } = await fetchCurrentUser();
-  dispatch(userFsa.signIn({ username }));
-  dispatch(moviesFsa.setWatchlist(movies));
+  try {
+    dispatch(moviesFsa.setWatchlistLoading(true));
+    const { username, movies } = await fetchCurrentUser();
+    dispatch(userFsa.signIn({ username }));
+    dispatch(moviesFsa.setWatchlist(movies));
+  } catch {
+    console.error('Failed to get current user');
+  } finally {
+    dispatch(moviesFsa.setWatchlistLoading(false));
+  }
 };
 
 export const signIn = (

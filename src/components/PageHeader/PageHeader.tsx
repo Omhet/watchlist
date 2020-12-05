@@ -6,16 +6,21 @@ import Logo from '../Logo/Logo';
 import WatchlistCounter from '../../containers/WatchlistCounter';
 import Button from '../Button/Button';
 import UserDropdown from '../../containers/UserDropdown';
+import Loader from '../Loader/Loader';
 
 export interface PageHeaderProps {
   showSignInButton: boolean;
+  showWatchlistCounter: boolean;
   showUserDropdown: boolean;
+  showUserLoader: boolean;
   onSignInClick(): void;
 }
 
 const PageHeader: FunctionComponent<PageHeaderProps> = ({
   showSignInButton,
+  showWatchlistCounter,
   showUserDropdown,
+  showUserLoader,
   onSignInClick
 }) => {
   const history = useHistory();
@@ -32,16 +37,23 @@ const PageHeader: FunctionComponent<PageHeaderProps> = ({
           }}
         />
       </div>
-      {showSignInButton ? (
+      {showSignInButton && (
         <Button onClick={onSignInClick} className={styles.signButton}>
           Sign in
         </Button>
-      ) : (
+      )}
+      {showWatchlistCounter && (
         <Link to="/list">
           <WatchlistCounter />
         </Link>
       )}
       {showUserDropdown && <UserDropdown />}
+      {showUserLoader && (
+        <div className={styles.loaderContainer}>
+          <Loader className={styles.loader} />
+          <span>Loading...</span>
+        </div>
+      )}
     </div>
   );
 };

@@ -48,7 +48,7 @@ const App: FunctionComponent<AppProps> = ({
       <div className={styles.moviesBlock}>
         <Switch>
           <Route exact path="/list">
-            {isUserSignedIn && <WatchlistMovies />}
+            <WatchlistMovies />
           </Route>
           <Route
             exact

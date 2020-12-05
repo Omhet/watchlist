@@ -35,13 +35,16 @@ const MoviePreview: FunctionComponent<Props> = ({
   const dispatch = useDispatch();
   const history = useHistory();
   const isSignedIn = useSelector((state: RootState) => state.user.isSignedIn);
+  const isWatchlistLoading = useSelector(
+    (state: RootState) => state.movies.isWatchlistLoading
+  );
   const isInWatchlist = useSelector((state: RootState) =>
     isMovieInWatchlist(state, id)
   );
   const [isLoading, setIsLoading] = useState(false);
 
   const handleWatchlistClick = useCallback(async () => {
-    if (isLoading) return;
+    if (isLoading || isWatchlistLoading) return;
 
     if (!isSignedIn) {
       dispatch(dialogFsa.openDialog(DialogId.SignIn));
@@ -65,7 +68,7 @@ const MoviePreview: FunctionComponent<Props> = ({
       console.error(error);
     }
     setIsLoading(false);
-  }, [isInWatchlist, isSignedIn, isLoading, movie, id]);
+  }, [isInWatchlist, isSignedIn, isLoading, isWatchlistLoading, movie, id]);
 
   const handleMovieClick = () => {
     history.push(`/movie?id=${id}`);
