@@ -10,7 +10,6 @@ import Dialogs from '../../containers/dialogs/Dialogs';
 import UserProfile from '../../containers/UserProfile';
 import ErrorToast from '../../containers/ErrorToast';
 import AppError from '../AppError/AppError';
-import Modal from '../Modal/Modal';
 
 export interface AppProps {
   isUserSignedIn: boolean;
