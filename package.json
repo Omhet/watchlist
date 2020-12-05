@@ -77,5 +77,8 @@
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix"
     ]
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }

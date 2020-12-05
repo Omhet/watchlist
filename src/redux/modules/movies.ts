@@ -21,6 +21,7 @@ import { ThunkAction } from '../types';
 
 export const fsa = {
   setWatchlist: createAction('MOVIES/SET_MOVIES_TO_WATCHLIST')<Movies>(),
+  setMoviesLoading: createAction('MOVIES/SET_MOVIES_LOADING')<boolean>(),
   setMoviesToShow: createAction('MOVIES/SET_MOVIES_TO_SHOW')<Movies>(),
   addMoviesToShow: createAction('MOVIES/ADD_MOVIES_TO_SHOW')<Movies>(),
   setMovieToOverview: createAction('MOVIES/SET_MOVIE_TO_SHOW')<MovieWithInfo>(),
@@ -31,6 +32,7 @@ export const fsa = {
 export const moviesFsa = fsa;
 
 interface State {
+  areMoviesLoading: boolean;
   toShow: Movies;
   watchlist: Movies;
   watchlistSet: Set<string>;
@@ -39,6 +41,7 @@ interface State {
 }
 
 const initialState: State = {
+  areMoviesLoading: true,
   toShow: [],
   watchlist: [],
   watchlistSet: new Set(),
@@ -67,6 +70,10 @@ export const movies = withState(initialState)
   .add(fsa.addMoviesToShow, (state, { payload }) => ({
     ...state,
     toShow: [...state.toShow, ...payload]
+  }))
+  .add(fsa.setMoviesLoading, (state, { payload }) => ({
+    ...state,
+    areMoviesLoading: payload
   }))
   .add(fsa.setMovieToOverview, (state, { payload }) => ({
     ...state,
@@ -120,8 +127,15 @@ export const showMoviesFromResponse = (
 export const showFeaturedMovies = (
   request: MovieRequest
 ): ThunkAction => async dispatch => {
-  const response = await fetchFeaturedMovies(request);
-  dispatch(showMoviesFromResponse(request, response));
+  try {
+    dispatch(fsa.setMoviesLoading(true));
+    const response = await fetchFeaturedMovies(request);
+    dispatch(showMoviesFromResponse(request, response));
+  } catch {
+    console.error('Failed');
+  } finally {
+    dispatch(fsa.setMoviesLoading(false));
+  }
 };
 
 export const showSearchMovies = (

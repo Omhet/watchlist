@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
+import classnames from 'classnames';
 import style from './style.scss';
 
-const Loader = () => <div className={style.main}></div>;
+interface Props {
+  className?: string;
+}
+
+const Loader: FunctionComponent<Props> = ({ className }) => (
+  <div className={classnames(style.main, className)}></div>
+);
 
 export default Loader;

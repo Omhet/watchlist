@@ -1,5 +1,7 @@
 declare namespace StyleScssNamespace {
   export interface IStyleScss {
+    loader: string;
+    loaderContainer: string;
     main: string;
     title: string;
   }

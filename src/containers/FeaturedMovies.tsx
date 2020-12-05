@@ -5,7 +5,8 @@ import MoviesBlock from '../components/MoviesBlock/MoviesBlock';
 
 const mapState = (state: RootState) => {
   return {
-    movies: state.movies.toShow
+    movies: state.movies.toShow,
+    areMoviesLoading: state.movies.areMoviesLoading
   };
 };
 
