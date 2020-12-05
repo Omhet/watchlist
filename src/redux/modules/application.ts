@@ -7,23 +7,27 @@ import { moviesFsa } from './movies';
 import { getCurrentUser, userFsa } from './user';
 
 export const fsa = {
-  setError: createAction('APP/SET ERROR')<Error | undefined>()
+  setError: createAction('APP/SET ERROR')<Error | undefined>(),
+  setPageError: createAction('APP/SET PAGE ERROR')<Error | undefined>()
 };
 export const appFsa = fsa;
 
 type State = {
   error?: Error;
+  pageError?: Error;
 };
 
 const initialState: State = {};
 
-export const app = withState(initialState).add(
-  fsa.setError,
-  (state, { payload }) => ({
+export const app = withState(initialState)
+  .add(fsa.setError, (state, { payload }) => ({
     ...state,
     error: payload
-  })
-);
+  }))
+  .add(fsa.setPageError, (state, { payload }) => ({
+    ...state,
+    pageError: payload
+  }));
 
 export const startApp = (): ThunkAction => dispatch => {
   dispatch(getCurrentUser());

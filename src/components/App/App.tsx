@@ -9,17 +9,21 @@ import PageHeader from '../../containers/PageHeader';
 import Dialogs from '../../containers/dialogs/Dialogs';
 import UserProfile from '../../containers/UserProfile';
 import ErrorToast from '../../containers/ErrorToast';
+import AppError from '../AppError/AppError';
+import Modal from '../Modal/Modal';
 
 export interface AppProps {
   isUserSignedIn: boolean;
   appError?: Error;
+  pageError?: Error;
   onStart(): void;
 }
 
 const App: FunctionComponent<AppProps> = ({
   onStart,
   isUserSignedIn,
-  appError
+  appError,
+  pageError
 }) => {
   useEffect(() => {
     onStart();
@@ -30,6 +34,12 @@ const App: FunctionComponent<AppProps> = ({
       <Dialogs />
 
       {appError && <ErrorToast />}
+
+      {pageError && (
+        <Modal>
+          <AppError />
+        </Modal>
+      )}
 
       <PageHeader />
 

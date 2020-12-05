@@ -18,6 +18,7 @@ import {
   isMovieInWatchlist
 } from '../selectors/movies';
 import { ThunkAction } from '../types';
+import { appFsa } from './application';
 
 export const fsa = {
   setWatchlist: createAction('MOVIES/SET_MOVIES_TO_WATCHLIST')<Movies>(),
@@ -148,7 +149,7 @@ export const showFeaturedMovies = (
     const response = await fetchFeaturedMovies(request);
     dispatch(showMoviesFromResponse(request, response));
   } catch {
-    console.error('Failed');
+    dispatch(appFsa.setPageError(Error('Failed to fetch')));
   } finally {
     dispatch(fsa.setMoviesLoading(false));
   }
@@ -162,7 +163,7 @@ export const showSearchMovies = (
     const response = await fetchSearchMovies(request);
     dispatch(showMoviesFromResponse(request, response));
   } catch {
-    console.error('Failed');
+    dispatch(appFsa.setPageError(Error('Failed to fetch')));
   } finally {
     dispatch(fsa.setMoviesLoading(false));
   }
@@ -177,8 +178,8 @@ export const setMovieToOverview = (id: string): ThunkAction => async (
     const movieResult = await fetchMovieInfo({ id });
     const movie = getMovieWithInfoFromResponse(getState(), movieResult);
     dispatch(fsa.setMovieToOverview(movie));
-  } catch (error) {
-    console.error(error);
+  } catch {
+    dispatch(appFsa.setPageError(Error('Failed to fetch')));
   } finally {
     dispatch(fsa.setMovieOverviewLoading(false));
   }
