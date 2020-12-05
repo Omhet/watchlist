@@ -141,8 +141,15 @@ export const showFeaturedMovies = (
 export const showSearchMovies = (
   request: MovieRequest
 ): ThunkAction => async dispatch => {
-  const response = await fetchSearchMovies(request);
-  dispatch(showMoviesFromResponse(request, response));
+  try {
+    dispatch(fsa.setMoviesLoading(true));
+    const response = await fetchSearchMovies(request);
+    dispatch(showMoviesFromResponse(request, response));
+  } catch {
+    console.error('Failed');
+  } finally {
+    dispatch(fsa.setMoviesLoading(false));
+  }
 };
 
 export const setMovieToOverview = (id: string): ThunkAction => async (

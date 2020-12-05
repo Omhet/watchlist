@@ -14,6 +14,7 @@ const mapDispatch = (dispatch: Dispatch) => ({
   onMount: () => {
     dispatch(moviesFsa.setMoviesTitle('Featured movies'));
     dispatch(showFeaturedMovies({ page: 1 }));
+    dispatch(moviesFsa.setMoviesToShow([]));
   },
   onReachMovieListEnd: (page: number) => {
     dispatch(showFeaturedMovies({ page }));

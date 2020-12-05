@@ -13,6 +13,7 @@ const SearchMovies: FunctionComponent<Props> = ({ query }) => {
   const handleMount = useCallback(() => {
     dispatch(moviesFsa.setMoviesTitle(`Results for: ${query}`));
     dispatch(showSearchMovies({ query, page: 1 }));
+    dispatch(moviesFsa.setMoviesToShow([]));
   }, [query]);
 
   const handleReachListEnd = useCallback(
@@ -23,9 +24,13 @@ const SearchMovies: FunctionComponent<Props> = ({ query }) => {
   );
 
   const movies = useSelector((state: RootState) => state.movies.toShow);
+  const areMoviesLoading = useSelector(
+    (state: RootState) => state.movies.areMoviesLoading
+  );
 
   return (
     <MoviesBlock
+      areMoviesLoading={areMoviesLoading}
       movies={movies}
       onReachMovieListEnd={handleReachListEnd}
       onMount={handleMount}
