@@ -35,11 +35,7 @@ const App: FunctionComponent<AppProps> = ({
 
       {appError && <ErrorToast />}
 
-      {pageError && (
-        <Modal>
-          <AppError />
-        </Modal>
-      )}
+      {pageError && <AppError />}
 
       <PageHeader />
 
