@@ -9,8 +9,6 @@ import { UserResponse, UserUpdateParams } from '../types/user';
 export const fetchFeaturedMovies = async ({
   page
 }: MovieRequest): Promise<MovieResponse> => {
-  console.log(process.env);
-
   const res = await fetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&language=en-EN&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`
   );
